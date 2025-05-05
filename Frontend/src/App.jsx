@@ -4,7 +4,7 @@ import MainBodyNote from './Components/MainBodyNote'
 function App() {
   return (
     <div>
-      <div>
+      <div className=''>
         <Header />
         <MainBodyNote />
       </div>
