@@ -21,7 +21,7 @@ function SideBar() {
                             </ul>
                     </div>
                     
-                    <div className=' absolute bottom-0 left-0'>
+                    <div className=' absolute bottom-14 left-0 '>
                         <div className='block text-center text-2xl px-4 pb-6  space-y-4'>
                             <div>
                                 <button className='block py-3 px-3 bg-slate-200 rounded-full cursor-pointer hover:bg-yellow-200'><IoSettingsOutline /></button>
