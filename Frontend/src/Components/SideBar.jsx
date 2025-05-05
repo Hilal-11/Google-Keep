@@ -11,13 +11,13 @@ function SideBar() {
   return (
     <div className='grid grid-cols-2'>
             <div className=' shadow-lg shadow-gray-400 fixed top-[4.1rem] rounded-tr-lg left-0 hover:w-[300px] h-[100%] hover:shadow-xl hover:shadow-gray-900 duration-600 pr-1'>
-                    <div className='block py-2 px-0 '>
+                    <div className='block py-2 px-0 group'>
                             <ul className=' list-none space-y-2 px-3 hover:px-0'>
-                                <li className='text-xl font-bold block bg-yellow-200 rounded-full hover:rounded-l-[0px] hover:rounded-r-full duration-600 px-4 py-4 cursor-pointer'><span className=''><FaRegLightbulb /></span></li>
-                                <li className='text-xl font-bold block bg-slate-200 rounded-full hover:rounded-l-[0px] hover:rounded-r-full duration-600 px-4 py-4 cursor-pointer'><span className=''><FiBell /></span></li>
-                                <li className='text-xl font-bold block bg-slate-200 rounded-full hover:rounded-l-[0px] hover:rounded-r-full duration-600 px-4 py-4 cursor-pointer'><span className=''><IoPencil /></span></li>
-                                <li className='text-xl font-bold block bg-slate-200 rounded-full hover:rounded-l-[0px] hover:rounded-r-full duration-600 px-4 py-4 cursor-pointer'><span className=''><HiArchiveBoxArrowDown /></span></li>
-                                <li className='text-xl font-bold block bg-slate-200 rounded-full hover:rounded-l-[0px] hover:rounded-r-full duration-600 px-4 py-4 cursor-pointer'><span className=''><RiDeleteBin6Line /></span></li>
+                                <li className='flex text-xl font-bold bg-yellow-200 rounded-full hover:rounded-l-[0px] hover:rounded-r-full duration-600 px-4 py-4 cursor-pointer'><span className=''><FaRegLightbulb /></span><span className='hidden group-hover:flex  px-8 font-bold text-[14px]'>Notes</span></li>
+                                <li className='flex text-xl font-bold bg-slate-200 rounded-full hover:rounded-l-[0px] hover:rounded-r-full duration-600 px-4 py-4 cursor-pointer'><span className=''><FiBell /></span><span className='hidden group-hover:flex px-8 font-bold text-[14px]'>Reminders</span></li>
+                                <li className='flex text-xl font-bold bg-slate-200 rounded-full hover:rounded-l-[0px] hover:rounded-r-full duration-600 px-4 py-4 cursor-pointer'><span className=''><IoPencil /></span><span className='hidden group-hover:flex px-8 font-bold text-[14px]'>Edit Labels</span></li>
+                                <li className='flex text-xl font-bold bg-slate-200 rounded-full hover:rounded-l-[0px] hover:rounded-r-full duration-600 px-4 py-4 cursor-pointer'><span className=''><HiArchiveBoxArrowDown /></span><span className='hidden group-hover:flex px-8 font-bold text-[14px]'>Archive</span></li>
+                                <li className='flex text-xl font-bold bg-slate-200 rounded-full hover:rounded-l-[0px] hover:rounded-r-full duration-600 px-4 py-4 cursor-pointer'><span className=''><RiDeleteBin6Line /></span><span className='hidden group-hover:flex px-8 font-bold text-[14px]'>Bin</span></li>
                             </ul>
                     </div>
                     

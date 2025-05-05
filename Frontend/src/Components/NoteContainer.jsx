@@ -32,7 +32,6 @@ function NoteContainer() {
                 <span className='font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><MdAddAlert /></span>
                 <span className='font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><IoPersonAddOutline /></span>
                 <span className='font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><RiGalleryLine /></span>
-
                 <span className='font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><HiOutlineFolderDownload /></span>
                 <span className='font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><BsThreeDotsVertical /></span>
                 <span className='font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><BiUndo /></span>
