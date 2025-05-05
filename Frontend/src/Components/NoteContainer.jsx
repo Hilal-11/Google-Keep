@@ -14,13 +14,13 @@ function NoteContainer() {
 
 
     const [isOpenNoteInput , setIsOpenNoteInput] = useState(false)
-
+    console.log(isOpenNoteInput)
     
   return (
     <div className='py-10 px-6'>
 
         {/* Search Box */}
-        <div className=' bg-white rounded-md lg:w-1/3 w-full h-auto mx-auto py-3 cursor-text'
+        <div className=' bg-white rounded-md w-auto lg:w-1/3 h-auto mx-auto py-3 cursor-text'
             style={{
                 'background': 'linear-gradient(145deg, #ffffff, #ffffff)',
                 'box-shadow':  '2px 2px 12px #6e6e6e, -2px -2px 12px #6e6e6e',
@@ -42,7 +42,7 @@ function NoteContainer() {
                 <div>
                     <textarea className='resize-auto w-full h-auto outline-0 px-5 font-medium py-0 pt-1 text-black text-[15px]' placeholder='Take a Note:- ' ></textarea>
                 </div>
-                <div className='flex px-3 gap-4 pb-1'>
+                <div className='flex px-3 gap-4 pb-1 flex-wrap'>
                     <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><TfiPaintBucket /></span>
                     <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><MdAddAlert /></span>
                     <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><IoPersonAddOutline /></span>
@@ -52,18 +52,33 @@ function NoteContainer() {
                     <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><BiUndo /></span>
                     <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><BiRedo /></span>
 
-                    <div className='flex justify-end gap-4 px-8 font-medium' >
-                        <button className='hover:bg-slate-300 px-3 py-1 rounded-full cursor-pointer' onClick={() => { setIsOpenNoteInput(false)}}>Create</button>
-                        <button className='hover:bg-slate-300 px-3 py-1 rounded-full cursor-pointer' onClick={() => { setIsOpenNoteInput(false)}}>Close</button>
-                    </div>
+
+                <div className='flex justify-end gap-2 px-4 font-medium flex-wrap text-[14px]' >
+                    <button className='hover:bg-slate-300 px-3 py-1 rounded-full cursor-pointer' onClick={(event) => {
+                        event.stopPropagation()
+                        setIsOpenNoteInput(false)}
+                    }>Create</button>
+                    <button className='hover:bg-slate-300 px-3 py-1 rounded-full cursor-pointer' onClick={(event) => {
+                        event.stopPropagation()
+                        setIsOpenNoteInput(false)}
+                    }>Close</button>
+                </div>
+                    
 
                 </div>
 
                 
          </div>
+
+         
         }
-            
+
+           
         </div>
+
+
+
+            
 
 
     </div>
