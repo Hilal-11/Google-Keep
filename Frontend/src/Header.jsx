@@ -5,6 +5,12 @@ import reactUserIcon from './assets/react.svg'
 import { CgMenuGridO } from "react-icons/cg";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdRefresh } from "react-icons/md";
+
+import { FaRegLightbulb } from "react-icons/fa6";
+import { FiBell } from "react-icons/fi";
+import { IoPencil } from "react-icons/io5";
+import { HiArchiveBoxArrowDown } from "react-icons/hi2";
+import { RiDeleteBin6Line } from "react-icons/ri";
 function Header() {
   return (
     <div>
@@ -39,13 +45,13 @@ function Header() {
 
 
             <div className='fixed top-[4.1rem] rounded-tr-lg left-0 w-[300px] h-[100%] shadow-xl shadow-gray-900 '>
-                <div>
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                <div className='block'>
+                    <ul className=' list-none space-y-10'>
+                        <li className='text-4xl font-bold'><span><FaRegLightbulb /></span></li>
+                        <li className='text-4xl font-bold'><span><FiBell /></span></li>
+                        <li className='text-4xl font-bold'><span><IoPencil /></span></li>
+                        <li className='text-4xl font-bold'><span><HiArchiveBoxArrowDown /></span></li>
+                        <li className='text-4xl font-bold'><span><RiDeleteBin6Line /></span></li>
                     </ul>
                 </div>
             </div>
