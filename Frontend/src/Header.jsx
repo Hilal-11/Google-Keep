@@ -36,6 +36,19 @@ function Header() {
                     <img src={reactUserIcon} alt="" />
                 </div>
             </div>
+
+
+            <div className='fixed top-[4.1rem] rounded-tr-lg left-0 w-[300px] h-[100%] shadow-xl shadow-gray-900 '>
+                <div>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
   )
