@@ -99,11 +99,13 @@ function NoteContainer() {
            
         </div>
         {/* NOTE CONTAINER */}
+        
         <div className='w-full h-[700px] mt-8 flex flex-wrap justify-center items-center gap-8 z-10 pb-10'>
             {/* NOTE CONTAINER */}
         {
             listOfNotes.map((item , index) => (
-                <div key={index} className='relative w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'
+                <div className='relative'>
+                    <div key={index} className='relative w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'
                     style={{
                         'boxShadow':  '2px 2px 12px #d1d5dc, -2px -2px 12px #d1d5dc',
                     }}
@@ -116,14 +118,42 @@ function NoteContainer() {
                         <p className='py-2 text-[14px] poppins-regular text-gray-600'>{item.discription}</p>
                     </div>
                     <div className='absolute bottom-1 flex text-gray-700 justify-evenly w-[90%]'>
-                        <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><TfiPaintBucket /></span>
+
+
+                        <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'
+
+                        >
+                                <TfiPaintBucket />
+                        </span>
+                      
+
+
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><MdAddAlert /></span>
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><IoPersonAddOutline /></span>
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><RiGalleryLine /></span>
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><HiOutlineFolderDownload /></span>
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><BsThreeDotsVertical /></span>
                     </div>
+
+
+                    
                 </div>
+                {/* PAINTS/COLORS */}
+
+                <div className='py-3 lg:py-0 mt-2 absolute right-[10%] w-auto lg:w-auto px-4 lg:h-[60px] rounded-md shadow-sm shadow-gray-500 flex justify-evenly items-center gap-2 flex-wrap'>
+                    <button className='py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-teal-800'></button>
+                    <button className='py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-lime-800'></button>
+                    <button className='py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-blue-800'></button>
+                    <button className='py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-orange-800'></button>
+                    <button className='py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-violet-800'></button>
+                    <button className='py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-slate-800'></button>
+                </div>
+                    
+            </div>
+
+
+        
+                
             ))
         }
         </div>
