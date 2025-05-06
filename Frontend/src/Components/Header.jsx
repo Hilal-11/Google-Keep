@@ -1,7 +1,6 @@
 import React from 'react'
 import GoogleKeep from '../assets/GoogleKeep.png'
 import { IoMenuOutline } from "react-icons/io5";
-import reactUserIcon from '../assets/react.svg'
 import { CgMenuGridO } from "react-icons/cg";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdRefresh } from "react-icons/md";
