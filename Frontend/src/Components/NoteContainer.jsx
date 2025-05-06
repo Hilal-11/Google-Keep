@@ -80,11 +80,27 @@ function NoteContainer() {
             {/* NOTE CONTAINER */}
         {
             Array(10).fill("").map(() => (
-                <div className='w-[300px] h-[400px] ring-1 rounded-lg '
+                <div className='relative w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'
                     style={{
                         'boxShadow':  '2px 2px 12px #d1d5dc, -2px -2px 12px #d1d5dc',
                     }}
                 >
+                    <div>
+                        <h2 className='font-medium text-[18px] poppins-medium text-gray-600'>Mechine Learning</h2>
+                    </div>
+                    <div className=' overflow-hidden max-h-[320px] p-1'>
+                        <p className='py-2 text-[14px] poppins-regular text-gray-600'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur officiis praesentium, mollitia corrupti quas provident, asperiores unde esse, libero non tempora harum a consequuntur expedita vel. Architecto quaerat possimus ratione, natus ullam debitis consequatur atque quam a minus, enim, exercitationem labore dolores dolorum ipsa. consequuntur expedita vel. Architecto quaerat possimus ratione, natus ullam debitis consequatur atque quam a minus, enim, exercitationem labore dolores dolorum ipsa. consequuntur expedita vel. Architecto quaerat possimus ratione, natus ullam debitis consequatur atque quam a minus, enim, exercitationem labore dolores dolorum ipsa.
+                            
+                        </p>
+                    </div>
+                    <div className='absolute bottom-1 flex text-gray-700 justify-evenly w-[90%]'>
+                        <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><TfiPaintBucket /></span>
+                        <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><MdAddAlert /></span>
+                        <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><IoPersonAddOutline /></span>
+                        <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><RiGalleryLine /></span>
+                        <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><HiOutlineFolderDownload /></span>
+                        <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><BsThreeDotsVertical /></span>
+                    </div>
                 </div>
             ))
         }
