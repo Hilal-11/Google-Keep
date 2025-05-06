@@ -10,6 +10,7 @@ import { BiRedo } from "react-icons/bi";
 
 import { FaPaintBrush } from "react-icons/fa";
 import { LuListTodo } from "react-icons/lu";
+import { VscPinned } from "react-icons/vsc";
 function NoteContainer() {
 
 
@@ -29,7 +30,7 @@ function NoteContainer() {
         >
             {
                 !isOpenNoteInput && <div className='flex items-center justify-between'><p className='font-medium px-2'>Take a Note</p> 
-                    <div className='flex gap-7 pr-5 text-xl '><span className='cursor-pointer hover:bg-slate-300 rounded-full py-1 px-1'><LuListTodo /></span><span className='cursor-pointer hover:bg-slate-200 rounded-full py-1 px-1'><FaPaintBrush /></span><span className='cursor-pointer hover:bg-slate-300 rounded-full py-1 px-1'><RiGalleryLine /></span></div>
+                    <div className='flex gap-1 lg:gap-7 pr-2 lg:pr-5 text-xl '><span className='cursor-pointer hover:bg-slate-300 rounded-full py-1 px-1'><LuListTodo /></span><span className='cursor-pointer hover:bg-slate-200 rounded-full py-1 px-1'><FaPaintBrush /></span><span className='cursor-pointer hover:bg-slate-300 rounded-full py-1 px-1'><RiGalleryLine /></span></div>
                 </div>
             }
         {
@@ -79,14 +80,15 @@ function NoteContainer() {
         <div className='w-full h-[700px] mt-8 flex flex-wrap justify-center items-center gap-8 z-10 pb-10'>
             {/* NOTE CONTAINER */}
         {
-            Array(10).fill("").map(() => (
+            Array(4).fill("").map(() => (
                 <div className='relative w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'
                     style={{
                         'boxShadow':  '2px 2px 12px #d1d5dc, -2px -2px 12px #d1d5dc',
                     }}
                 >
-                    <div>
+                    <div className='flex justify-between items-center'>
                         <h2 className='font-medium text-[18px] poppins-medium text-gray-600'>Mechine Learning</h2>
+                        <span className='text-lg cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><VscPinned /></span>
                     </div>
                     <div className=' overflow-hidden max-h-[320px] p-1'>
                         <p className='py-2 text-[14px] poppins-regular text-gray-600'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur officiis praesentium, mollitia corrupti quas provident, asperiores unde esse, libero non tempora harum a consequuntur expedita vel. Architecto quaerat possimus ratione, natus ullam debitis consequatur atque quam a minus, enim, exercitationem labore dolores dolorum ipsa. consequuntur expedita vel. Architecto quaerat possimus ratione, natus ullam debitis consequatur atque quam a minus, enim, exercitationem labore dolores dolorum ipsa. consequuntur expedita vel. Architecto quaerat possimus ratione, natus ullam debitis consequatur atque quam a minus, enim, exercitationem labore dolores dolorum ipsa.
