@@ -22,7 +22,7 @@ function NoteContainer() {
         <div className=' bg-white rounded-md w-auto lg:w-1/3 h-auto mx-auto py-3 cursor-text'
             style={{
                 'background': 'linear-gradient(145deg, #ffffff, #ffffff)',
-                'box-shadow':  '2px 2px 12px #6e6e6e, -2px -2px 12px #6e6e6e',
+                'boxShadow':  '2px 2px 12px #6e6e6e, -2px -2px 12px #6e6e6e',
                 
             }}
         onClick={() => { setIsOpenNoteInput(true) }}
@@ -76,11 +76,11 @@ function NoteContainer() {
         </div>
 
         {/* NOTE CONTAINER */}
-        <div className='w-full h-[700px] mt-8 flex flex-wrap gap-6 z-10 pb-10'>
+        <div className='w-full h-[700px] mt-8 flex flex-wrap justify-center items-center gap-8 z-10 pb-10'>
             {/* NOTE CONTAINER */}
         {
             Array(10).fill("").map(() => (
-                <div className='w-[300px] h-[400px] ring-1 rounded-md bg-yellow-50'
+                <div className='w-[300px] h-[400px] ring-1 rounded-lg '
                     style={{
                         'boxShadow':  '2px 2px 12px #d1d5dc, -2px -2px 12px #d1d5dc',
                     }}
@@ -88,11 +88,8 @@ function NoteContainer() {
                 </div>
             ))
         }
-
-        <br /><br />
         </div>
-
-
+        <br /><br /> 
     </div>
   )
 }

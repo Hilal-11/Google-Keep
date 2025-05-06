@@ -9,8 +9,8 @@ function MainBodyNote() {
     <div className='grid grid-cols-18 gap-1'>
         <div className='mb-10'>
             <SideBar />
-        </div>
-        <div className='lg:w-[100%] w-[100%] relative -right-6 mx-auto col-span-16 '>
+        </div> 
+        <div className='lg:w-[100%] w-[100%] relative -right-6 mx-auto col-span-16 my-16'>
             <NoteContainer />
         </div>
       </div>

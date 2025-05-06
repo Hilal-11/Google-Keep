@@ -12,7 +12,7 @@ import Stack from '@mui/material/Stack';
 function Header() {
   return (
     <div>
-        <div className='w-full grid grid-cols-3 justify-evenly ring-1 border-gray-400 py-2 px-10'>
+        <div className='bg-white fixed z-50 top-0 left-0 right-0 w-full grid grid-cols-3 justify-evenly ring-gray-300 ring-1 py-2 px-10'>
             <div className='w-[250px] flex gap-2 items-center'>
                 <div className='cursor-pointer px-2 py-2 hover:bg-slate-200 hover:rounded-full'>
                     <span className='text-3xl '><IoMenuOutline /></span>
