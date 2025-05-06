@@ -23,7 +23,11 @@ function NoteContainer() {
             title: noteTitle,
             discription: noteDetails,
         }
-        listOfNotes.push(note)
+        if(note.title === '' && note.discription === ''){
+            alert("Please Provide Title and Note")
+        }else{
+            listOfNotes.push(note)
+        }
 
         setNoteTitle('')
         setNoteDetails('')
@@ -33,8 +37,8 @@ function NoteContainer() {
 
 
     // FOR NOTE ICONS --> OPTIONS
-    const [isPaint , setIsPaint] = useState(false);
-    const [noteBgColor , setNoteBgColor] = useState('#ffffff')
+    const [isPaint , setIsPaint] = useState({});
+    const [noteBgColor , setNoteBgColor] = useState({})
     const paintColors = [
         {id: 1 , color: '#14b8a6'},
         {id: 2 , color: '#d8f999'},
@@ -45,10 +49,18 @@ function NoteContainer() {
         {id: 7 , color: '#c4b5fd'},
 
     ];
-    const handlePaintColors = (event) => {
-        setNoteBgColor(event.target.style.backgroundColor)
+    const toggleIsPaint = (id) => {
+        setIsPaint((prev) => ({
+            ...prev,
+            [id]: !prev[id]
+        }))
     }
-    
+    const handlePaintColors = (id, color) => {
+        setNoteBgColor((prev) => ({
+          ...prev,
+          [id]: color, // Set the background color for the specific note
+        }));
+      };
 
   return (
     <div className='py-10 px-6 '>
@@ -117,7 +129,7 @@ function NoteContainer() {
         </div>
         {/* NOTE CONTAINER */}
         
-        <div className='w-full h-[700px] mt-8 flex flex-wrap justify-center items-center gap-8 z-10 pb-10'>
+        <div className='w-full h-[700px] mt-8 flex flex-wrap justify-center items-start gap-8 z-10 pb-10'>
             {/* NOTE CONTAINER */}
         {
             listOfNotes.map((item , index) => (
@@ -125,7 +137,7 @@ function NoteContainer() {
                     <div key={index} className='relative w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'
                     style={{
                         'boxShadow':  '2px 2px 12px #d1d5dc, -2px -2px 12px #d1d5dc',
-                        backgroundColor: noteBgColor,
+                        backgroundColor: noteBgColor[index] || '#ffffff',
                     }}
                 >
                     <div className='flex justify-between items-center'>
@@ -139,7 +151,7 @@ function NoteContainer() {
 
 
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'
-                            onClick={() => setIsPaint(!isPaint)}
+                            onClick={() => toggleIsPaint(index)}
                         >
                                 <TfiPaintBucket />
                         </span>
@@ -158,24 +170,17 @@ function NoteContainer() {
                 </div>
                 {/* PAINTS/COLORS */}
                 {
-                    isPaint && <div className='py-3 lg:py-0 mt-2 absolute right-[0%] w-auto lg:w-auto px-4 lg:h-[60px] rounded-md shadow-sm shadow-gray-500 flex justify-evenly items-center gap-2 '>
+                    isPaint[index] && <div className='py-3 lg:py-0 mt-2 absolute right-[0%] w-auto lg:w-auto px-4 lg:h-[60px] rounded-md shadow-sm shadow-gray-500 flex justify-evenly items-center gap-2 '>
                     {
                         paintColors.map((item) => (
                             <button key={item.id} className='cursor-pointer py-3 lg:py-4 px-3 lg:px-4 rounded-full'
                                 style={{
                                     backgroundColor: item.color
                                 }}
-                                onClick={handlePaintColors}
+                                onClick={() => handlePaintColors(index , item.color)}
                             ></button>
                         ))
                     }
-                    {/* <button className='cursor-pointer py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-lime-200'></button>
-                    <button className='cursor-pointer py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-blue-500'></button>
-                    <button className='cursor-pointer py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-orange-300'></button>
-                    <button className='cursor-pointer py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-violet-300'></button>
-                    <button className='cursor-pointer py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-slate-800'></button>
-                    <button className='cursor-pointer py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-amber-200'></button> */}
-
                 </div>
                 }
                     
