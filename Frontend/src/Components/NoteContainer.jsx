@@ -31,7 +31,24 @@ function NoteContainer() {
         setIsOpenNoteInput(false)
     }
 
-  
+
+    // FOR NOTE ICONS --> OPTIONS
+    const [isPaint , setIsPaint] = useState(false);
+    const [noteBgColor , setNoteBgColor] = useState('#ffffff')
+    const paintColors = [
+        {id: 1 , color: '#14b8a6'},
+        {id: 2 , color: '#d8f999'},
+        {id: 3 , color: '#1d293d'},
+        {id: 4 , color: '#3b82f6'},
+        {id: 5 , color: '#fee685'},
+        {id: 6 , color: '#fdba74'},
+        {id: 7 , color: '#c4b5fd'},
+
+    ];
+    const handlePaintColors = (event) => {
+        setNoteBgColor(event.target.style.backgroundColor)
+    }
+    
 
   return (
     <div className='py-10 px-6 '>
@@ -108,6 +125,7 @@ function NoteContainer() {
                     <div key={index} className='relative w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'
                     style={{
                         'boxShadow':  '2px 2px 12px #d1d5dc, -2px -2px 12px #d1d5dc',
+                        backgroundColor: noteBgColor,
                     }}
                 >
                     <div className='flex justify-between items-center'>
@@ -121,7 +139,7 @@ function NoteContainer() {
 
 
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'
-
+                            onClick={() => setIsPaint(!isPaint)}
                         >
                                 <TfiPaintBucket />
                         </span>
@@ -139,15 +157,27 @@ function NoteContainer() {
                     
                 </div>
                 {/* PAINTS/COLORS */}
+                {
+                    isPaint && <div className='py-3 lg:py-0 mt-2 absolute right-[0%] w-auto lg:w-auto px-4 lg:h-[60px] rounded-md shadow-sm shadow-gray-500 flex justify-evenly items-center gap-2 '>
+                    {
+                        paintColors.map((item) => (
+                            <button key={item.id} className='cursor-pointer py-3 lg:py-4 px-3 lg:px-4 rounded-full'
+                                style={{
+                                    backgroundColor: item.color
+                                }}
+                                onClick={handlePaintColors}
+                            ></button>
+                        ))
+                    }
+                    {/* <button className='cursor-pointer py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-lime-200'></button>
+                    <button className='cursor-pointer py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-blue-500'></button>
+                    <button className='cursor-pointer py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-orange-300'></button>
+                    <button className='cursor-pointer py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-violet-300'></button>
+                    <button className='cursor-pointer py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-slate-800'></button>
+                    <button className='cursor-pointer py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-amber-200'></button> */}
 
-                <div className='py-3 lg:py-0 mt-2 absolute right-[10%] w-auto lg:w-auto px-4 lg:h-[60px] rounded-md shadow-sm shadow-gray-500 flex justify-evenly items-center gap-2 flex-wrap'>
-                    <button className='py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-teal-800'></button>
-                    <button className='py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-lime-800'></button>
-                    <button className='py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-blue-800'></button>
-                    <button className='py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-orange-800'></button>
-                    <button className='py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-violet-800'></button>
-                    <button className='py-3 lg:py-4 px-3 lg:px-4 rounded-full bg-slate-800'></button>
                 </div>
+                }
                     
             </div>
 
