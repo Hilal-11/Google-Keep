@@ -10,9 +10,11 @@ function MainBodyNote() {
         <div className='mb-10'>
             <SideBar />
         </div>
-        <div className=' col-span-17'>
-            <NoteContainer />
-        </div>
+   
+        <div className='lg:w-[100%] w-[94%] relative -right-6 mx-auto col-span-16 '>
+              <NoteContainer />
+          </div>
+
     </div>
 
 
