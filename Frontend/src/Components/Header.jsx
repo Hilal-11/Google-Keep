@@ -6,6 +6,8 @@ import { CgMenuGridO } from "react-icons/cg";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdRefresh } from "react-icons/md";
 
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
 
 function Header() {
   return (
@@ -34,8 +36,10 @@ function Header() {
                 <div>
                     <span className='inline-block text-2xl text-gray-500 cursor-pointer px-2 py-2 hover:bg-slate-200 hover:rounded-full'><CgMenuGridO /></span>
                 </div>
-                <div className='w-10 h-10 rounded-full shadow-inner shadow-gray-500 flex justify-center items-center'>
-                    <img src={reactUserIcon} alt="" />
+                <div>
+                    <Stack direction="row" spacing={2}>
+                        <Avatar alt="Remy Sharp" src="https://mui.com/static/images/avatar/2.jpg" />
+                    </Stack>
                 </div>
             </div>
 

@@ -10,7 +10,7 @@ const label = { inputProps: { 'aria-label': 'Switch demo' } };
 function SideBar() {
   return (
     <div className='grid grid-cols-2'>
-            <div className=' shadow-lg shadow-gray-400 fixed top-[4.1rem] rounded-tr-lg left-0 hover:w-[300px] h-[100%] hover:shadow-xl hover:shadow-gray-900 duration-600 pr-1'>
+            <div className='z-50 bg-white shadow-lg shadow-gray-400 fixed top-[4.1rem] rounded-tr-lg left-0 hover:w-[300px] h-[100%] hover:shadow-xl hover:shadow-gray-900 duration-600 pr-1'>
                     <div className='block py-2 px-0 group'>
                             <ul className=' list-none space-y-2 px-3 hover:px-0'>
                                 <li className='flex text-sm lg:text-xl font-bold bg-yellow-200 rounded-full hover:rounded-l-[0px] hover:rounded-r-full duration-600 px-2 lg:px-4 py-2 lg:py-4 cursor-pointer'><span className=''><FaRegLightbulb /></span><span className='hidden group-hover:flex  px-8 font-bold text-[14px]'>Notes</span></li>

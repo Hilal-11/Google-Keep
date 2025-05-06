@@ -16,7 +16,7 @@ function NoteContainer() {
     const [isOpenNoteInput , setIsOpenNoteInput] = useState(false)
     
   return (
-    <div className='py-10 px-6'>
+    <div className='py-10 px-6 '>
 
         {/* Search Box */}
         <div className=' bg-white rounded-md w-auto lg:w-1/3 h-auto mx-auto py-3 cursor-text'
@@ -76,7 +76,7 @@ function NoteContainer() {
         </div>
 
         {/* NOTE CONTAINER */}
-        <div className='w-full h-[700px] mt-8 flex flex-wrap gap-6'>
+        <div className='w-full h-[700px] mt-8 flex flex-wrap gap-6 z-10 pb-10'>
             {/* NOTE CONTAINER */}
         {
             Array(10).fill("").map(() => (
@@ -88,6 +88,8 @@ function NoteContainer() {
                 </div>
             ))
         }
+
+        <br /><br />
         </div>
 
 
