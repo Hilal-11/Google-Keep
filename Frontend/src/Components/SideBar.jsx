@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FaRegLightbulb } from "react-icons/fa6";
 import { FiBell } from "react-icons/fi";
 import { IoPencil } from "react-icons/io5";
@@ -6,9 +6,12 @@ import { HiArchiveBoxArrowDown } from "react-icons/hi2";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Switch from '@mui/material/Switch';
 import { IoSettingsOutline } from "react-icons/io5";
+import { AppContext } from '../Context/ContextApi';
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 function SideBar() {
-    const [isMenuOpen , setIsMenuOpen] = useState(false)
+
+    const { isOpenMenu, setIsOpenMenu } = useContext(AppContext)
+    
   return (
     <div className='grid grid-cols-2'>
             <div className='z-50 bg-white shadow-lg shadow-gray-400 fixed top-[4.1rem] rounded-tr-lg left-0 h-[100%] pr-1'>
@@ -16,23 +19,23 @@ function SideBar() {
                             <ul className=' list-none space-y-2 px-3'>
                                 <li className='flex text-sm lg:text-xl font-bold hover:bg-yellow-200 rounded-full px-2 lg:px-3 py-2 lg:py-3 cursor-pointer'>
                                     <span className=''><FaRegLightbulb /></span>
-                                    { isMenuOpen && <span className=' px-8 font-bold text-[14px]'>Notes</span> }
+                                    { isOpenMenu && <span className=' px-8 font-bold text-[14px]'>Notes</span> }
                                 </li>
                                 <li className='flex text-sm lg:text-xl font-bold hover:bg-slate-200 rounded-full px-2 lg:px-3 py-2 lg:py-3 cursor-pointer'>
                                     <span className=''><FiBell /></span>
-                                    { isMenuOpen && <span className='px-8 font-bold text-[14px]'>Reminders</span> }
+                                    { isOpenMenu && <span className='px-8 font-bold text-[14px]'>Reminders</span> }
                                 </li>
                                 <li className='flex text-sm lg:text-xl font-bold hover:bg-slate-200 rounded-full px-2 lg:px-3 py-2 lg:py-3 cursor-pointer'>
                                     <span className=''><IoPencil /></span>
-                                    { isMenuOpen && <span className='px-8 font-bold text-[14px]'>Edit Labels</span> }
+                                    { isOpenMenu && <span className='px-8 font-bold text-[14px]'>Edit Labels</span> }
                                 </li>
                                 <li className='flex text-sm lg:text-xl font-bold hover:bg-slate-200 rounded-full px-2 lg:px-3 py-2 lg:py-3 cursor-pointer'>
                                     <span className=''><HiArchiveBoxArrowDown /></span>
-                                    { isMenuOpen && <span className='px-8 font-bold text-[14px]'>Archive</span> }
+                                    { isOpenMenu && <span className='px-8 font-bold text-[14px]'>Archive</span> }
                                 </li>
                                 <li className='flex text-sm lg:text-xl font-bold hover:bg-slate-200 rounded-full px-2 lg:px-3 py-2 lg:py-3 cursor-pointer'>
                                     <span className=''><RiDeleteBin6Line /></span>
-                                    { isMenuOpen && <span className='px-8 font-bold text-[14px]'>Bin</span> }
+                                    { isOpenMenu && <span className='px-8 font-bold text-[14px]'>Bin</span> }
                                 </li>
                             </ul>
                     </div>

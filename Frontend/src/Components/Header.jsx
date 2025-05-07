@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import GoogleKeep from '../assets/GoogleKeep.png'
 import { IoMenuOutline } from "react-icons/io5";
 import { CgMenuGridO } from "react-icons/cg";
@@ -7,14 +7,19 @@ import { MdRefresh } from "react-icons/md";
 import { IoSearchSharp } from "react-icons/io5";
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
+import { AppContext } from '../Context/ContextApi';
 
 function Header() {
+
+  const { isOpenMenu, setIsOpenMenu } = useContext(AppContext)
   return (
     <div>
         <div className='bg-white fixed z-50 top-0 left-0 right-0 w-full grid grid-cols-3 justify-between lg:justify-evenly ring-gray-300 ring-1 py-2 lg:px-10'>
             <div className='w-[250px] flex gap-2 items-center'>
                 <div className='cursor-pointer px-2 py-2 hover:bg-slate-200 hover:rounded-full'>
-                    <span className='text-3xl '><IoMenuOutline /></span>
+                    <span className='text-3xl ' 
+                      onClick={() => { setIsOpenMenu(true) }}  
+                    ><IoMenuOutline /></span>
                 </div>
                 <div className='lg:px-2 flex items-center'>
                     <img className='w-[40px]' src={GoogleKeep} alt="" />
