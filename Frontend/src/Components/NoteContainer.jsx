@@ -45,6 +45,7 @@ function NoteContainer() {
     // FOR NOTE ICONS --> OPTIONS
     const [isPaint , setIsPaint] = useState({});
     const [noteBgColor , setNoteBgColor] = useState({})
+    const [isClipItem , setIsClipItems] = useState({})
 
     const toggleIsPaint = (id) => {
         setIsPaint((prev) => ({
@@ -59,6 +60,13 @@ function NoteContainer() {
           [id]: color, // Set the background color for the specific note
         }));
       };
+
+    const toggleClipItems = (id) => {
+        setIsClipItems((prev) => ({
+            ...prev , 
+            [id] : !prev[id]
+        }))
+    }
 
       const [isDraggable , setIsDraggable] = useState(false);
       useEffect(() => {
@@ -183,7 +191,16 @@ function NoteContainer() {
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><IoPersonAddOutline /></span>
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><RiGalleryLine /></span>
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><HiOutlineFolderDownload /></span>
-                        <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><BsThreeDotsVertical /></span>
+                        
+                        
+                        
+                        <span 
+                        onClick={() => toggleClipItems(index)}
+                        className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'>
+                            <BsThreeDotsVertical />
+                        </span>
+
+
                     </div>
 
 
@@ -204,12 +221,18 @@ function NoteContainer() {
                     }
                 </div>
                 }
+                {
+                    isClipItem[index] && <div className='z-50 absolute left-[35%] lg:left-[70%] py-2 my-1 w-[170px] h-auto rounded-md bg-white shadow-md shadow-gray-300 flex-col poppins-regular text-[13px]'>
+                    {
+                        clipItems.map((item) => (
+                            <button className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4' key={item.id}>{item.clipItem}</button>
+                        ))
+                    }
+                    </div>
+                }
+                
                     
             </motion.div>
-
-
-        
-                
             ))
         }
         </div>
