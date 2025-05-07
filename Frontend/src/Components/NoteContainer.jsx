@@ -7,7 +7,7 @@ import { HiOutlineFolderDownload } from "react-icons/hi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { BiUndo } from "react-icons/bi";
 import { BiRedo } from "react-icons/bi";
-
+import { noNote } from '../assets/noNote.jpg'
 import { FaPaintBrush } from "react-icons/fa";
 import { LuListTodo } from "react-icons/lu";
 import { VscPinned } from "react-icons/vsc";
