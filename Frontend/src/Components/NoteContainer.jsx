@@ -114,8 +114,12 @@ function NoteContainer() {
                      />
                 </div>
                 <div>
-                    <textarea 
-                        className='resize-auto w-full h-auto outline-0 px-5 font-medium py-0 pt-1 text-black text-[15px]' 
+                    <textarea
+                        onInput={(event) => {
+                            event.target.style.height = 'auto'; // Reset height to auto to calculate new height
+                            event.target.style.height = `${event.target.scrollHeight}px`; // Set height based on content
+                        }}
+                        className='w-full break-words h-auto outline-0 px-5 font-medium py-0 pt-1 text-black text-[15px]' 
                         placeholder='Take a Note:- ' 
                         onChange={(event) => { setNoteDetails(event.target.value) }}
                         value={noteDetails}
