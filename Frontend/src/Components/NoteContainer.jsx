@@ -11,6 +11,11 @@ import { BiRedo } from "react-icons/bi";
 import { FaPaintBrush } from "react-icons/fa";
 import { LuListTodo } from "react-icons/lu";
 import { VscPinned } from "react-icons/vsc";
+import { toast } from 'react-toastify';
+
+import { motion } from "motion/react"
+import { useRef } from 'react';
+
 function NoteContainer() {
 
     const [isOpenNoteInput , setIsOpenNoteInput] = useState(false)
@@ -24,7 +29,7 @@ function NoteContainer() {
             discription: noteDetails,
         }
         if(note.title === '' && note.discription === ''){
-            alert("Please Provide Title and Note")
+            toast.error("Please Provide Title and Note")
         }else{
             listOfNotes.push(note)
         }
@@ -55,12 +60,17 @@ function NoteContainer() {
             [id]: !prev[id]
         }))
     }
+ 
     const handlePaintColors = (id, color) => {
+
         setNoteBgColor((prev) => ({
           ...prev,
           [id]: color, // Set the background color for the specific note
         }));
       };
+
+
+      const constraintsRef  = useRef(null)
 
   return (
     <div className='py-10 px-6 '>
@@ -129,11 +139,17 @@ function NoteContainer() {
         </div>
         {/* NOTE CONTAINER */}
         
-        <div className='w-full h-[700px] mt-8 flex flex-wrap justify-center items-start gap-8 z-10 pb-10'>
+        <div ref={constraintsRef} className='w-full h-auto mt-8 flex flex-wrap justify-center items-start gap-8 z-10 pb-10'>
             {/* NOTE CONTAINER */}
         {
             listOfNotes.map((item , index) => (
-                <div className='relative'>
+                <motion.div
+                    drag
+                    dragElastic={3}
+                    dragSnapToOrigin={true}
+                    dragConstraints={constraintsRef}
+                    dragMomentum={false}
+                className='relative'>
                     <div key={index} className='relative w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'
                     style={{
                         'boxShadow':  '2px 2px 12px #d1d5dc, -2px -2px 12px #d1d5dc',
@@ -145,7 +161,7 @@ function NoteContainer() {
                         <span className='text-lg cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><VscPinned /></span>
                     </div>
                     <div className=' overflow-hidden max-h-[300px] p-1'>
-                        <p className='py-2 text-[14px] poppins-regular text-gray-600'>{item.discription}</p>
+                        <p className='py-2 text-[14px] poppins-regular text-[#4a5565]'>{item.discription}</p>
                     </div>
                     <div className='absolute bottom-1 flex text-gray-700 justify-evenly w-[90%]'>
 
@@ -184,7 +200,7 @@ function NoteContainer() {
                 </div>
                 }
                     
-            </div>
+            </motion.div>
 
 
         
