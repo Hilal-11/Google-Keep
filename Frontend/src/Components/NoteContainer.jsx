@@ -69,17 +69,30 @@ function NoteContainer() {
         }));
       };
 
-
+      const [isDraggable , setIsDraggable] = useState(false);
+      useEffect(() => {
+        const handleResize = () => {
+            if(window.innerWidth > 768)
+                setIsDraggable(true)
+            else
+                setIsDraggable(false)
+        }
+        handleResize();
+        window.addEventListener('resize' , handleResize);
+        return () => {
+            window.removeEventListener('resize' , handleResize)
+        }
+      }, [])
       const constraintsRef  = useRef(null)
 
   return (
-    <div className='py-10 px-6 '>
+    <div className='py-5 lg:py-10 px-2 lg:px-6'>
 
         {/* Search Box */}
         <div className=' bg-white rounded-md w-auto lg:w-1/3 h-auto mx-auto py-3 cursor-text'
             style={{
                 'background': 'linear-gradient(145deg, #ffffff, #ffffff)',
-                'boxShadow':  '2px 2px 12px #6e6e6e, -2px -2px 12px #6e6e6e',
+                'boxShadow':  '1px 1px 8px #d1d5dc, -1px -1px 8px #d1d5dc',
                 
             }}
         onClick={() => { setIsOpenNoteInput(true) }}
@@ -119,8 +132,7 @@ function NoteContainer() {
                     <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><BsThreeDotsVertical /></span>
                     <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><BiUndo /></span>
                     <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><BiRedo /></span>
-
-
+                    
                 <div className='flex justify-end gap-2 px-4 font-medium flex-wrap text-[14px]' >
                     <button 
                         className='hover:bg-slate-300 px-3 py-1 rounded-full cursor-pointer'
@@ -144,13 +156,14 @@ function NoteContainer() {
         {
             listOfNotes.map((item , index) => (
                 <motion.div
-                    drag
-                    dragElastic={3}
+                    key={index}
+                    drag={isDraggable}
+                    dragElastic={0.2}
                     dragSnapToOrigin={true}
                     dragConstraints={constraintsRef}
                     dragMomentum={false}
                 className='relative'>
-                    <div key={index} className='relative w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'
+                    <div key={index} className='relative w-[290px] lg:w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'
                     style={{
                         'boxShadow':  '2px 2px 12px #d1d5dc, -2px -2px 12px #d1d5dc',
                         backgroundColor: noteBgColor[index] || '#ffffff',

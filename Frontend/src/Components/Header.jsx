@@ -18,12 +18,12 @@ function Header() {
             <div className='w-[250px] flex gap-2 items-center'>
                 <div className='cursor-pointer px-2 py-2 hover:bg-slate-200 hover:rounded-full'>
                     <span className='text-3xl ' 
-                      onClick={() => { setIsOpenMenu(true) }}  
+                      onClick={() => { setIsOpenMenu(!isOpenMenu) }}  
                     ><IoMenuOutline /></span>
                 </div>
                 <div className='lg:px-2 flex items-center'>
                     <img className='w-[40px]' src={GoogleKeep} alt="" />
-                    <p className='text-xl lg:text-2xl font-bold'>Keep</p>
+                    <p className='text-xl lg:text-2xl poppins-regular'>Keep</p>
                 </div>
             </div>
             <div className=''>
