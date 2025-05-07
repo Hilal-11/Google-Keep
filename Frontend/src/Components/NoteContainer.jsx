@@ -15,6 +15,8 @@ import { toast } from 'react-toastify';
 import { motion } from "motion/react"
 import { useRef } from 'react';
 import NoNote from './NoNote';
+
+import { clipItems , paintColors } from '../config/StaticData'
 function NoteContainer() {
 
     const [isOpenNoteInput , setIsOpenNoteInput] = useState(false)
@@ -43,23 +45,13 @@ function NoteContainer() {
     // FOR NOTE ICONS --> OPTIONS
     const [isPaint , setIsPaint] = useState({});
     const [noteBgColor , setNoteBgColor] = useState({})
-    const paintColors = [
-        {id: 1 , color: '#14b8a6'},
-        {id: 2 , color: '#d8f999'},
-        {id: 3 , color: '#1d293d'},
-        {id: 4 , color: '#3b82f6'},
-        {id: 5 , color: '#fee685'},
-        {id: 6 , color: '#fdba74'},
-        {id: 7 , color: '#c4b5fd'},
 
-    ];
     const toggleIsPaint = (id) => {
         setIsPaint((prev) => ({
             ...prev,
             [id]: !prev[id]
         }))
     }
- 
     const handlePaintColors = (id, color) => {
 
         setNoteBgColor((prev) => ({
