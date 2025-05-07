@@ -16,7 +16,7 @@ function MainBodyNote() {
         <div className='hidden lg:block mb-10'>
           <SideBar />
         </div> 
-        <div className='w-screen  mx-auto lg:col-span-16 my-16'>
+        <div className='absolute left-0 w-screen  mx-auto lg:col-span-16 my-16'>
             <NoteContainer />
         </div>
       </div>
