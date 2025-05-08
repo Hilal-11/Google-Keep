@@ -73,7 +73,6 @@ function NoteContainer() {
             ...prev,
             [id]: !prev[id]
         }))
-        console.log("let's expand it", id);
     }
       const [isDraggable , setIsDraggable] = useState(false);
       useEffect(() => {
@@ -175,7 +174,7 @@ function NoteContainer() {
                     dragConstraints={constraintsRef}
                     dragMomentum={false}
                 className='relative'>
-                    <div key={index} className='relative w-[290px] lg:w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'
+                    <div key={index} className={!isExpanded ? 'relative w-[290px] lg:w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden' : 'relative w-[400px] h-auto ring-1 rounded-lg py-4 px-6 '}
                     style={{
                         'boxShadow':  '2px 2px 12px #d1d5dc, -2px -2px 12px #d1d5dc',
                         backgroundColor: noteBgColor[index] || '#ffffff',
