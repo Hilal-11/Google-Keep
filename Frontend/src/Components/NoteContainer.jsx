@@ -67,7 +67,14 @@ function NoteContainer() {
             [id] : !prev[id]
         }))
     }
-
+    const [isExpanded , setIsExpanded] = useState(false)
+    const expandNode = (id) => {
+        setIsExpanded((prev) => ({
+            ...prev,
+            [id]: !prev[id]
+        }))
+        console.log("let's expand it", id);
+    }
       const [isDraggable , setIsDraggable] = useState(false);
       useEffect(() => {
         const handleResize = () => {
@@ -160,6 +167,7 @@ function NoteContainer() {
             (listOfNotes.length < 1) ? (<NoNote />) :
             listOfNotes.map((item , index) => (
                 <motion.div
+                    onClick={() => expandNode(index)}
                     key={index}
                     drag={isDraggable}
                     dragElastic={0.2}
