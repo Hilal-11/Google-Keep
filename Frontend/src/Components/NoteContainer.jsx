@@ -166,7 +166,7 @@ function NoteContainer() {
             (listOfNotes.length < 1) ? (<NoNote />) :
             listOfNotes.map((item , index) => (
                 <motion.div
-                    onClick={() => expandNode(index)}
+                    
                     key={index}
                     drag={isDraggable}
                     dragElastic={0.2}
@@ -184,7 +184,9 @@ function NoteContainer() {
                         <h2 className='font-medium text-[18px] poppins-medium text-gray-600'>{item.title}</h2>
                         <span className='text-lg cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><VscPinned /></span>
                     </div>
-                    <div className={isExpanded[index] ? 'w-full h-auto' : ' overflow-hidden max-h-[300px] p-1'}>
+                    <div 
+                        onClick={() => expandNode(index)}
+                        className={isExpanded[index] ? 'w-full h-auto ' : ' overflow-hidden max-h-[300px] p-1'}>
                         <p className='py-2 text-[14px] poppins-regular text-[#4a5565]'>{item.discription}</p>
                     </div>
                     <div className='absolute bottom-1 flex text-gray-700 justify-evenly w-[90%]'>
