@@ -13,40 +13,19 @@ import { useContext } from 'react'
 import { AppContext } from './Context/ContextApi'
 function App() {
 
-  const { isOpenMenu , theme , setTheme , textTheme , setTextTheme } = useContext(AppContext)
-
+  const { isOpenMenu } = useContext(AppContext)
   return (
-    <div
-    style={{
-      backgroundColor: theme,
-      color: textTheme,
-    }}
-    >
-      <div className=''
-        style={{
-          backgroundColor: theme,
-          color: textTheme,
-        }}
-      >
+    <div>
+      <div className=''>
         <ToastContainer />
         <Header />
         {
           isOpenMenu &&
-          <div className='block mb-10'
-          style={{
-            backgroundColor: theme,
-            color: textTheme,
-          }}
-          >
+          <div className='block mb-10'>
             <SideBar />
           </div> 
         }
-        <div className='hidden lg:block mb-10'
-          style={{
-            backgroundColor: theme,
-            color: textTheme,
-          }}
-        >
+        <div className='hidden lg:block mb-10'>
           <SideBar />
         </div> 
       </div>
