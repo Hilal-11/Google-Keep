@@ -2,7 +2,9 @@ import React from 'react'
 
 function Bin() {
   return (
-    <div>Bin</div>
+    <div>
+      <h1 className='text-7xl text-center py-20'>Bin</h1>
+    </div>
   )
 }
 

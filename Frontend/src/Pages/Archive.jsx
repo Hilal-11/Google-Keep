@@ -2,7 +2,9 @@ import React from 'react'
 
 function Archive() {
   return (
-    <div>Archive</div>
+    <div>
+      <h1 className='text-7xl text-center py-20'>Archive</h1>
+    </div>
   )
 }
 
