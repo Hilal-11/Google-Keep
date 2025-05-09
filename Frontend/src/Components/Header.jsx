@@ -36,9 +36,9 @@ function Header() {
                     <span className='inline-block text-2xl text-gray-500 cursor-pointer px-[6px] lg:px-2 lg:py-2 hover:bg-slate-200 hover:rounded-full'
                       onClick={() => { window.location.reload() }}
                     ><MdRefresh /></span>
-                    <span className='inline-block text-2xl text-gray-500 cursor-pointer px-[6px] lg:px-2 lg:py-2 hover:bg-slate-200 hover:rounded-full'><IoSettingsOutline /></span>
+                    <span className='hidden lg:inline-block text-2xl text-gray-500 cursor-pointer px-[6px] lg:px-2 lg:py-2 hover:bg-slate-200 hover:rounded-full'><IoSettingsOutline /></span>
                     <Stack direction="row" spacing={2}>
-                        <Avatar className='bg-black cursor-pointer shadow-inner shadow-gray-400 py-2 px-2  ' alt="Remy Sharp" src={avatarImg} />
+                        <Avatar className='bg-black cursor-pointer  py-0 px-0' alt="Remy Sharp" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY2PRnxPr8rX7NOWGRK63y4NGffjANp_V0qXYQ9msj1w0sqj7Zn8PhrI8jwpsmVZn8Lsc&usqp=CAU' />
                     </Stack>
             </div>
 
