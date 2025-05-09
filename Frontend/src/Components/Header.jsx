@@ -32,7 +32,9 @@ function Header() {
 
             <div className='flex justify-end items-center lg:pr-10 gap-0 lg:gap-6'>
                     <span className='lg:hidden inline-block text-2xl text-gray-500 cursor-pointer px-[6px] lg:px-2 lg:py-2 hover:bg-slate-200 hover:rounded-full'><IoSearchSharp /></span>
-                    <span className='inline-block text-2xl text-gray-500 cursor-pointer px-[6px] lg:px-2 lg:py-2 hover:bg-slate-200 hover:rounded-full'><MdRefresh /></span>
+                    <span className='inline-block text-2xl text-gray-500 cursor-pointer px-[6px] lg:px-2 lg:py-2 hover:bg-slate-200 hover:rounded-full'
+                      onClick={() => { window.location.reload() }}
+                    ><MdRefresh /></span>
                     <span className='inline-block text-2xl text-gray-500 cursor-pointer px-[6px] lg:px-2 lg:py-2 hover:bg-slate-200 hover:rounded-full'><IoSettingsOutline /></span>
                     <Stack direction="row" spacing={2}>
                         <Avatar alt="Remy Sharp" src="https://mui.com/static/images/avatar/2.jpg" />

@@ -11,11 +11,9 @@ import { FaPaintBrush } from "react-icons/fa";
 import { LuListTodo } from "react-icons/lu";
 import { VscPinned } from "react-icons/vsc";
 import { toast } from 'react-toastify';
-
 import { motion } from "motion/react"
 import { useRef } from 'react';
 import NoNote from './NoNote';
-
 import { clipItems , paintColors } from '../config/StaticData'
 function NoteContainer() {
 
@@ -34,7 +32,6 @@ function NoteContainer() {
         }else{
             listOfNotes.push(note)
         }
-
         setNoteTitle('')
         setNoteDetails('')
         event.stopPropagation()
@@ -174,7 +171,7 @@ function NoteContainer() {
                     dragConstraints={constraintsRef}
                     dragMomentum={false}
                 className='relative'>
-                    <div key={index} className={isExpanded[index] ? 'relative mx-auto w-[290px] lg:w-1/2 h-auto ring-1 rounded-lg py-2 px-4' : 'relative w-[290px] lg:w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'}
+                    <div key={index} className={isExpanded[index] ? 'space-y-6 relative mx-auto w-[100%] lg:w-1/2 h-auto ring-1 rounded-lg py-2 px-4' : 'relative w-[100%] lg:w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'}
                     style={{
                         'boxShadow':  '2px 2px 12px #d1d5dc, -2px -2px 12px #d1d5dc',
                         backgroundColor: noteBgColor[index] || '#ffffff',
