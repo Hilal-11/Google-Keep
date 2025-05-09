@@ -19,31 +19,31 @@ function SideBar() {
                     <div className='block py-2 px-0 group'>
                             <ul className=' list-none space-y-2 px-3'>
                                 <NavLink to={'/'}>
-                                    <li className='flex text-sm lg:text-xl font-bold hover:bg-yellow-200 rounded-full px-2 lg:px-3 py-2 lg:py-3 cursor-pointer'>
+                                    <li onClick={() => setIsOpenMenu(false)} className='flex text-sm lg:text-xl font-bold hover:bg-yellow-200 rounded-full px-2 lg:px-3 py-2 lg:py-3 cursor-pointer'>
                                         <span className=''><FaRegLightbulb /></span>
                                         { isOpenMenu && <span className=' px-8  poppins-medium text-[14px]'>Notes</span> }
                                     </li>
                                 </NavLink>
                                 <NavLink to={'/reminder'}>
-                                    <li className='flex text-sm lg:text-xl  hover:bg-[#14b8a6] rounded-full px-2 lg:px-3 py-2 lg:py-3 cursor-pointer'>
+                                    <li onClick={() => setIsOpenMenu(false)} className='flex text-sm lg:text-xl  hover:bg-[#14b8a6] rounded-full px-2 lg:px-3 py-2 lg:py-3 cursor-pointer'>
                                         <span className=''><FiBell /></span>
                                         { isOpenMenu && <span className='px-8 poppins-medium text-[14px]'>Reminders</span> }
                                     </li>
                                 </NavLink>
                                 <NavLink to={'/labels'}>
-                                    <li className='flex text-sm lg:text-xl font-bold hover:bg-[#c4b5fd] rounded-full px-2 lg:px-3 py-2 lg:py-3 cursor-pointer'>
+                                    <li onClick={() => setIsOpenMenu(false)} className='flex text-sm lg:text-xl font-bold hover:bg-[#c4b5fd] rounded-full px-2 lg:px-3 py-2 lg:py-3 cursor-pointer'>
                                         <span className=''><IoPencil /></span>
                                         { isOpenMenu && <span className='px-8 poppins-medium  text-[14px]'>Edit Labels</span> }
                                     </li>
                                 </NavLink>
                                 <NavLink to={'/archive'}>
-                                    <li className='flex text-sm lg:text-xl font-bold hover:bg-[#d8f999] rounded-full px-2 lg:px-3 py-2 lg:py-3 cursor-pointer'>
+                                    <li onClick={() => setIsOpenMenu(false)} className='flex text-sm lg:text-xl font-bold hover:bg-[#d8f999] rounded-full px-2 lg:px-3 py-2 lg:py-3 cursor-pointer'>
                                         <span className=''><HiArchiveBoxArrowDown /></span>
                                         { isOpenMenu && <span className='px-8 poppins-medium  text-[14px]'>Archive</span> }
                                     </li>
                                 </NavLink>
                                 <NavLink to={'/bin'}>
-                                    <li className='flex text-sm lg:text-xl font-bold hover:bg-[#1d293d] hover:text-white rounded-full px-2 lg:px-3 py-2 lg:py-3 cursor-pointer'>
+                                    <li onClick={() => setIsOpenMenu(false)} className='flex text-sm lg:text-xl font-bold hover:bg-[#1d293d] hover:text-white rounded-full px-2 lg:px-3 py-2 lg:py-3 cursor-pointer'>
                                         <span className=''><RiDeleteBin6Line /></span>
                                         { isOpenMenu && <span className='px-8 poppins-medium text-[14px]'>Bin</span> }
                                     </li>
