@@ -5,8 +5,10 @@ import { ToastContainer } from 'react-toastify'
 import { Routes , Route } from 'react-router-dom'
 
 import Reminders from './Pages/Reminders'
+import Labels from './Pages/Labels'
 import Archive from './Pages/Archive'
 import Bin from './Pages/Bin'
+import SideBar from './Components/SideBar'
 
 function App() {
   return (
@@ -14,11 +16,13 @@ function App() {
       <div className=''>
         <ToastContainer />
         <Header />
-        <MainBodyNote />
+        <SideBar />
       </div>
 
     <Routes>
+      <Route path='/' element={<MainBodyNote />}/>
       <Route path='/reminder' element={<Reminders />} />
+      <Route path='/labels' element={<Labels />} />
       <Route path='/archive' element={<Archive />} />
       <Route path='/bin' element={<Bin />} />
     </Routes>
