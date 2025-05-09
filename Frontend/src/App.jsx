@@ -9,16 +9,25 @@ import Labels from './Pages/Labels'
 import Archive from './Pages/Archive'
 import Bin from './Pages/Bin'
 import SideBar from './Components/SideBar'
-
+import { useContext } from 'react'
+import { AppContext } from './Context/ContextApi'
 function App() {
+
+  const { isOpenMenu } = useContext(AppContext)
   return (
     <div>
       <div className=''>
         <ToastContainer />
         <Header />
-        <SideBar />
+        {
+          isOpenMenu && <div className='block mb-10'>
+                          <SideBar />
+                        </div> 
+        }
+        <div className='hidden lg:block mb-10'>
+          <SideBar />
+        </div> 
       </div>
-
     <Routes>
       <Route path='/' element={<MainBodyNote />}/>
       <Route path='/reminder' element={<Reminders />} />
@@ -26,8 +35,6 @@ function App() {
       <Route path='/archive' element={<Archive />} />
       <Route path='/bin' element={<Bin />} />
     </Routes>
-
-
     </div>
   )
 }
