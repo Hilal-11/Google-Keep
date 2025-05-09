@@ -11,11 +11,16 @@ import { NavLink } from 'react-router-dom'
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 function SideBar() {
 
-    const { isOpenMenu, setIsOpenMenu } = useContext(AppContext)
+    const { isOpenMenu, setIsOpenMenu , theme , textTheme} = useContext(AppContext)
 
   return (
     <div className='grid grid-cols-2'>
-            <div className='z-50 bg-white shadow-lg shadow-gray-400 fixed top-[4.1rem] rounded-tr-lg left-0 h-[100%] pr-1'>
+            <div className='z-50 shadow-lg shadow-gray-400 fixed top-[4.1rem] rounded-tr-lg left-0 h-[100%] pr-1'
+                style={{
+                    backgroundColor: theme,
+                    color: textTheme,
+                  }}  
+            >
                     <div className='block py-2 px-0 group'>
                             <ul className=' list-none space-y-2 px-3'>
                                 <NavLink to={'/'}>

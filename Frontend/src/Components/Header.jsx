@@ -13,10 +13,15 @@ import avatarImg from '../assets/GoogleKeep.png'
 
 function Header() {
 
-  const { isOpenMenu, setIsOpenMenu } = useContext(AppContext)
+  const { isOpenMenu, setIsOpenMenu , theme , textTheme} = useContext(AppContext)
   return (
     <div>
-        <div className='bg-white fixed z-50 top-0 left-0 right-0 w-full grid grid-cols-3 justify-between lg:justify-evenly ring-gray-300 ring-1 py-2 lg:px-10'>
+        <div className='fixed z-50 top-0 left-0 right-0 w-full grid grid-cols-3 justify-between lg:justify-evenly ring-gray-300 ring-1 py-2 lg:px-10'
+          style={{
+            backgroundColor: theme,
+            color: textTheme
+          }}
+        >
             <div className='w-[250px] flex gap-2 items-center'>
                 <div className='cursor-pointer px-2 py-2 hover:bg-slate-200 hover:rounded-full'>
                     <span className='text-3xl ' 
@@ -29,7 +34,7 @@ function Header() {
                 </div>
             </div>
             <div className=''>
-                <input className='hidden lg:flex w-full py-3 px-6 rounded-md bg-slate-200 outline-0' type="text"placeholder='Search Note:- ' />
+                <input className='hidden lg:flex w-full py-3 px-6 rounded-md ring-1 ring-gray-600 outline-0' type="text"placeholder='Search Note:- ' />
             </div>
 
             <div className='flex justify-end items-center lg:pr-10 gap-0 lg:gap-6 pr-2'>

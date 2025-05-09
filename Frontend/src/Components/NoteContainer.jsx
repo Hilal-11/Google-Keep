@@ -15,8 +15,10 @@ import { motion } from "motion/react"
 import { useRef } from 'react';
 import NoNote from './NoNote';
 import { clipItems , paintColors } from '../config/StaticData'
+import { useContext } from 'react';
+import { AppContext } from '../Context/ContextApi';
 function NoteContainer() {
-
+    const { theme , setTheme , textTheme , setTextTheme} = useContext(AppContext)
     const [isOpenNoteInput , setIsOpenNoteInput] = useState(false)
     const [noteTitle , setNoteTitle] = useState('');
     const [noteDetails , setNoteDetails] = useState('');
@@ -88,13 +90,18 @@ function NoteContainer() {
       const constraintsRef  = useRef(null)
 
   return (
-    <div className='py-5 lg:py-10 px-2 lg:px-6'>
+    <div className='py-5 lg:py-10 px-2 lg:px-6'
+        style={{
+            backgroundColor: theme,
+            color: textTheme
+        }}
+    >
 
         {/* Search Box */}
-        <div className=' bg-white rounded-md w-auto lg:w-1/3 h-auto mx-auto py-3 cursor-text'
+        <div className='rounded-md w-auto lg:w-1/3 h-auto mx-auto py-3 cursor-text ring-1 ring-gray-600'
             style={{
-                'background': 'linear-gradient(145deg, #ffffff, #ffffff)',
-                'boxShadow':  '1px 1px 8px #d1d5dc, -1px -1px 8px #d1d5dc',
+                backgroundColor: theme,
+                boxShadow:  `1px 1px 8px ${theme}, -1px -1px 8px ${theme}`,
                 
             }}
         onClick={() => { setIsOpenNoteInput(true) }}
@@ -122,7 +129,7 @@ function NoteContainer() {
                             event.target.style.height = 'auto'; // Reset height to auto to calculate new height
                             event.target.style.height = `${event.target.scrollHeight}px`; // Set height based on content
                         }}
-                        className='resize-none w-full break-words h-auto outline-0 px-5 font-medium py-0 pt-1 text-black text-[15px]' 
+                        className='resize-none w-full break-words h-auto outline-0 px-5 font-medium py-0 pt-1 text-inherit text-[15px]' 
                         placeholder='Take a Note:- ' 
                         onChange={(event) => { setNoteDetails(event.target.value) }}
                         value={noteDetails}
@@ -157,7 +164,12 @@ function NoteContainer() {
         </div>
         {/* NOTE CONTAINER */}
         
-        <div ref={constraintsRef} className='relative w-full h-auto mt-8 flex flex-wrap justify-center items-start gap-8 z-10 pb-10'>
+        <div ref={constraintsRef} className='relative w-full h-auto mt-8 flex flex-wrap justify-center items-start gap-8 z-10 pb-10'
+            style={{
+                backgroundColor: theme,
+                color: textTheme,
+            }}
+        >
             {/* NOTE CONTAINER */}
         {
             (listOfNotes.length < 1) ? (<NoNote />) :
