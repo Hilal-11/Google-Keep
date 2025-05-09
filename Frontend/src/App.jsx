@@ -20,9 +20,10 @@ function App() {
         <ToastContainer />
         <Header />
         {
-          isOpenMenu && <div className='block mb-10'>
-                          <SideBar />
-                        </div> 
+          isOpenMenu &&
+          <div className='block mb-10'>
+            <SideBar />
+          </div> 
         }
         <div className='hidden lg:block mb-10'>
           <SideBar />
