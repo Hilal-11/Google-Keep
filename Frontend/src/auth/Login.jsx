@@ -3,7 +3,7 @@ import React from 'react'
 function Login() {
   return (
     <div className='w-full h-screen flex justify-center items-center'>
-        <div className='grid grid-cols-1 lg:grid-cols-3 bg-slate-100 shadow-sm shadow-gray-400 rounded-lg h-[700px] w-[80%]'>
+        <div className='bg-white grid grid-cols-1 lg:grid-cols-3 shadow-sm shadow-gray-400 rounded-lg h-[700px] w-[80%] overflow-hidden'>
           {/* FORM CONTAINER */}
           <div className=' w-full rounded-tl-lg rounded-l-lg col-span-2'>
 
@@ -11,8 +11,8 @@ function Login() {
 
 
           {/* SHOWCASE CONTAINER */}
-          <div className='w-full rounded-tr-lg rounded-r-lg bg-[url(https://jsmastery.pro/_next/image?url=%2Fassets%2Fgeneral%2Fimages%2Fhero-img.webp&w=750&q=75)] lg:w-full lg:h-[100%] bg-contain bg-center bg-no-repeat pr-20'>
-            
+          <div className='hidden lg:flex justify-center items-center rounded-tr-lg rounded-r-lg '>
+              <img className='h-[100%] bg-contain' src="https://res.cloudinary.com/prod/image/upload/f_auto,q_auto/registration-and-sign-up/register_free--right-background.png" alt="" />
           </div>
 
         </div>
