@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import GoogleKeep from '../assets/GoogleKeep.png'
 import { IoMenuOutline } from "react-icons/io5";
 import { CgMenuGridO } from "react-icons/cg";
@@ -10,8 +10,9 @@ import Stack from '@mui/material/Stack';
 import { AppContext } from '../Context/ContextApi';
 import avatarImg from '../assets/GoogleKeep.png'
 import { MdOutlineSearch } from "react-icons/md";
+import { motion } from "motion/react"
 function Header() {
-
+  const [isLoggedIn , setIsLoggedIn] = useState(true)
   const { isOpenMenu, setIsOpenMenu } = useContext(AppContext)
   return (
     <div>
@@ -37,9 +38,31 @@ function Header() {
                       onClick={() => { window.location.reload() }}
                     ><MdRefresh /></span>
                     <span className='hidden lg:inline-block text-2xl text-gray-500 cursor-pointer px-[6px] lg:px-2 lg:py-2 hover:bg-slate-200 hover:rounded-full'><IoSettingsOutline /></span>
-                    <Stack direction="row" spacing={2}>
-                        <Avatar className='bg-black cursor-pointer  py-0 px-0' alt="Remy Sharp" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY2PRnxPr8rX7NOWGRK63y4NGffjANp_V0qXYQ9msj1w0sqj7Zn8PhrI8jwpsmVZn8Lsc&usqp=CAU' />
-                    </Stack>
+            {
+              isLoggedIn ? (                    
+                <Stack className='group relative' direction="row" spacing={2}>
+                          <Avatar className='bg-black cursor-pointer  py-0 px-0' alt="Remy Sharp" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY2PRnxPr8rX7NOWGRK63y4NGffjANp_V0qXYQ9msj1w0sqj7Zn8PhrI8jwpsmVZn8Lsc&usqp=CAU' />
+                          <div className='z-50 absolute hidden group-hover:flex-col space-y-2 rounded-md bg-blue-400'>
+                              <div className='py-2 px-2 hover:bg-gray-400 duration-300'>Logout</div>
+                              <div className='py-2 px-2 hover:bg-gray-400 duration-300'>Varify Account</div>
+                          </div>
+                </Stack>): (
+                  <motion.button
+                  initial={{
+                    scale: 0.9
+                  }}
+                  whileHover={{
+                    scale: 1
+                  }}
+                  transition={{
+                    ease: 'easeInOut',
+                    duration: 0.1
+                  }}
+                  className='cursor-pointer shadow-sm shadow-gray-400 px-3 py-1 lg:px-5 lg:py-2 rounded-full poppins-regular'>
+                    Login
+                  </motion.button>
+                )
+            }
             </div>
 
         </div>
