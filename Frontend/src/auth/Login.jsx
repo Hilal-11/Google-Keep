@@ -3,7 +3,7 @@ import React from 'react'
 function Login() {
   return (
     <div className='w-full h-screen flex justify-center items-center'>
-        <div className='bg-white grid grid-cols-1 lg:grid-cols-3 shadow-sm shadow-gray-400 rounded-lg h-[700px] w-[80%] overflow-hidden'>
+        <div className='bg-white grid grid-cols-1 lg:grid-cols-3 shadow-sm shadow-gray-400 rounded-lg h-[600px] w-[60%] overflow-hidden'>
           {/* FORM CONTAINER */}
           <div className=' w-full rounded-tl-lg rounded-l-lg col-span-2'>
 
