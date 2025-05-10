@@ -11,9 +11,11 @@ import { AppContext } from '../Context/ContextApi';
 import avatarImg from '../assets/GoogleKeep.png'
 import { MdOutlineSearch } from "react-icons/md";
 import { motion } from "motion/react"
+import { useNavigate } from 'react-router-dom';
 function Header() {
-  const [isLoggedIn , setIsLoggedIn] = useState(true)
+  const [isLoggedIn , setIsLoggedIn] = useState(false)
   const { isOpenMenu, setIsOpenMenu } = useContext(AppContext)
+  const navigate = useNavigate('')
   return (
     <div>
         <div className='bg-white fixed z-50 top-0 left-0 right-0 w-full grid grid-cols-3 justify-between lg:justify-evenly ring-gray-300 ring-1 py-2 lg:px-10'>
@@ -61,7 +63,9 @@ function Header() {
                     ease: 'easeInOut',
                     duration: 0.1
                   }}
-                  className='cursor-pointer shadow-sm shadow-gray-400 px-3 py-1 lg:px-5 lg:py-2 rounded-full poppins-regular'>
+                  className='cursor-pointer shadow-sm shadow-gray-400 px-3 py-1 lg:px-5 lg:py-2 rounded-full poppins-regular'
+                    onClick={() => navigate('/login')}
+                  >
                     Login
                   </motion.button>
                 )
