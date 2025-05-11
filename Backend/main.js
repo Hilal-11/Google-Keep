@@ -17,7 +17,7 @@ app.use(cors({
 }));
 app.use(cookieParser())
 app.use('/api/auth' , app_routes);
-app.use('/api/keepNotes' , keepNotes_routes)
+app.use('/api/keep' , keepNotes_routes)
 app.get('/' , (req , res) => {
     res.send("<h1>Authentication and Autherization for Google keep</h1>")
 })
