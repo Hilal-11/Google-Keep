@@ -1,7 +1,7 @@
 
 const express = require('express');
-const connectDB = require('./config')
-const app_routes = require('./routes')
+const connectDB = require('./config/database')
+const app_routes = require('./routes/app_routes')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 require('dotenv').config();
@@ -14,7 +14,7 @@ app.use(cors({
     credentials: true,
 }));
 app.use(cookieParser())
-app.use('api/auth' , app_routes);
+app.use('/api/auth' , app_routes);
 app.get('/' , (req , res) => {
     res.send("<h1>Authentication and Autherization for Google keep</h1>")
 })

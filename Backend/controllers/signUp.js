@@ -19,8 +19,8 @@ const signUp = async (req , res) => {
                 message: "User already exists"
             })
         }
-        const salt_round = bcrypt.genSalt(20)
-        const hash_password = bcrypt.hash(password , salt_round);
+        // const salt_round = bcrypt.genSalt(20)
+        const hash_password = await bcrypt.hash(password , 10);
 
         const user = await Model.create({
             username,
@@ -30,14 +30,9 @@ const signUp = async (req , res) => {
 
                                     // GENERATE JWT( JSON WEB TOKEN )
         const token = await jwt.sign(
-            {
-                userId: user._id,
-                email: user.email
-            },
+            { userId: user._id , email: user.email},
             process.env.SECRET_KEY,
-            {
-                expiresIn: '5d'
-            }
+            { expiresIn: '5d' }
         )
 
         return res.json({
@@ -48,6 +43,7 @@ const signUp = async (req , res) => {
     }catch(error) {
         console.log(error.message)
         return res.json({
+            message: error,
             success: false,
             message: "Failed to sign Up"
         })

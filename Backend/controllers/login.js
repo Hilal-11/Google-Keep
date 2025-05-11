@@ -22,7 +22,7 @@ const login = async (req , res) => {
         }
 
         //  IF USER EXISTS THEN 
-        const isMatch = bcrypt.compare(userExists.password);
+        const isMatch = await bcrypt.compare(password , userExists.password);
         if(!isMatch) {
             return res.json({
                 success: false,
