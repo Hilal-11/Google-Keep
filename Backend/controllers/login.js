@@ -29,7 +29,7 @@ const login = async (req , res) => {
                 message: "incorrect password"
             })
         }
-                                        // GENERATE JWT( JSON WEB TOKEN )
+                    // GENERATE JWT( JSON WEB TOKEN )
         const token = await jwt.sign(
             {
                 userId: userExists._id ,
