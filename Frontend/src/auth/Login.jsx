@@ -8,21 +8,38 @@ function Login() {
   const [password , setPassword] = useState();
   const navigate = useNavigate('')
 
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = {
+      username,
+      email,
+      password
+    }
+    console.log(formData)
+    setUsername('')
+    setEmail('')
+    setPassword('')
+  }
+
+
   return (
-    <div className='w-full h-screen flex justify-center items-center'>
-        <div className='bg-white grid grid-cols-1 lg:grid-cols-3 shadow-sm shadow-gray-400 rounded-lg h-[600px] w-[60%] overflow-hidden'>
+    <div className='w-full h-screen flex justify-center items-center poppins-regular'>
+        <div className='bg-white grid grid-cols-1 lg:grid-cols-2 shadow-sm shadow-gray-400 rounded-lg h-auto lg:h-[600px] lg:w-[60%] w-[90%] overflow-hidden'>
           {/* FORM CONTAINER */}
-          <div className=' w-full rounded-tl-lg rounded-l-lg col-span-2'>
-            <div className="flex items-center justify-center">
-              <div className="rounded-md shadow-lg p-8 w-full max-w-md">
+          <div className=' w-full rounded-tl-lg rounded-l-lg col-span-1'>
+
+            <div className="flex items-center justify-center  h-full">
+              <div className="rounded-md shadow-lg p-8 w-full h-full">
                 <h2 className="text-3xl  text-center text-gray-800 mb-0 poppins-bold">{state === 'Sign Up' ? (<span>Create Account</span>) : (<span>Login</span>)}</h2>
                 <p className='poppins-light text-[13px] text-center text-violet-800 mb-8'>Create your Account</p>
 
-                  <form >
+                  <form onSubmit={ handleSubmit }>
                     {/* Username Field */}
-                      <div className="mb-8">
+                     {
+                      state === 'Sign Up' &&  <div className="mb-8">
                         <div className="flex items-center border px-3 py-3 shadow-md shadow-gray-500 rounded-full">
-                          <span className="material-icons text-gray-500 mr-2">person</span>
+                          <span className="material-icons text-gray-500 mr-2"></span>
                           <input
                             type="text"
                             placeholder="Username"
@@ -33,12 +50,13 @@ function Login() {
                           />
                         </div>
                       </div>
+                     }
                     
 
                     {/* Email Field */}
                     <div className="mb-8">
                       <div className="flex items-center border px-3 py-3 shadow-md shadow-gray-500 rounded-full">
-                        <span className="material-icons text-gray-500 mr-2">email</span>
+                        <span className="material-icons text-gray-500 mr-2"></span>
                         <input
                           type="email"
                           placeholder="Email"
@@ -53,7 +71,7 @@ function Login() {
                     {/* Password Field */}
                     <div className="mb-8">
                       <div className="flex items-center border px-3 py-3 shadow-md shadow-gray-500 rounded-full">
-                        <span className="material-icons text-gray-500 mr-2">lock</span>
+                        <span className="material-icons text-gray-500 mr-2"></span>
                         <input
                           type="password"
                           placeholder="Password"
@@ -78,32 +96,37 @@ function Login() {
                   </form>
 
         
-           <div>
+           {
+            state === 'Sign Up' ? (
+              <div>
              {/* Already have an account */}
               <p className="text-center text-gray-600 mt-4">
                 Already have an account?{' '}
                 <span className="text-blue-500 hover:underline cursor-pointer"
+                  onClick={() => setState('Login')}
                 >
                   Login here
                 </span>
               </p>
             </div>
-          <div>
+            ) : (
+              <div>
             <p className="text-center text-gray-600 mt-4">
                 Don't have an account?{' '}
               <span className="text-blue-500 hover:underline cursor-pointer"
-                  >
+                onClick={() => setState('Sign Up')}
+              >
                 Sign Up
               </span>
             </p>
           </div>
-
+            )
+           }
+  
 
       </div>
     </div>
-          </div>
-
-
+  </div>
           {/* SHOWCASE CONTAINER */}
           <div className='hidden lg:flex justify-center items-center rounded-tr-lg rounded-r-lg '>
               <img className='h-[100%] bg-contain' src="https://res.cloudinary.com/prod/image/upload/f_auto,q_auto/registration-and-sign-up/register_free--right-background.png" alt="" />
