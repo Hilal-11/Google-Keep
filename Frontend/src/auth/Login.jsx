@@ -8,7 +8,6 @@ function Login() {
   const [password , setPassword] = useState();
   const navigate = useNavigate('')
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = {
@@ -21,7 +20,6 @@ function Login() {
     setEmail('')
     setPassword('')
   }
-
 
   return (
     <div className='w-full h-screen flex justify-center items-center poppins-regular'>
@@ -82,8 +80,6 @@ function Login() {
                         />
                       </div>
                     </div>
-
-
                     <p className='mb-4 text-indigo-500 cursor-pointer'>Forgot Password</p>
 
                     {/* Sign Up Button */}
@@ -94,8 +90,6 @@ function Login() {
                       { state }
                     </button>
                   </form>
-
-        
            {
             state === 'Sign Up' ? (
               <div>
@@ -122,8 +116,6 @@ function Login() {
           </div>
             )
            }
-  
-
       </div>
     </div>
   </div>
