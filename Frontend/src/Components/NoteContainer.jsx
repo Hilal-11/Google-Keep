@@ -9,7 +9,8 @@ import { BiUndo } from "react-icons/bi";
 import { BiRedo } from "react-icons/bi";
 import { FaPaintBrush } from "react-icons/fa";
 import { LuListTodo } from "react-icons/lu";
-import { VscPinned } from "react-icons/vsc";
+import { BsPin } from "react-icons/bs";
+import { BsPinFill } from "react-icons/bs";
 import { toast } from 'react-toastify';
 import { motion } from "motion/react"
 import { useRef } from 'react';
@@ -20,7 +21,7 @@ function NoteContainer() {
     const [isOpenNoteInput , setIsOpenNoteInput] = useState(false)
     const [noteTitle , setNoteTitle] = useState('');
     const [noteDetails , setNoteDetails] = useState('');
-
+    const [isPinnedTrue , setIsPinnedTrue] = useState(false)
     const [listOfNotes , setListOfNotes] = useState([])
     const handleCreateNote = (event) => {
         const note = {
@@ -171,7 +172,7 @@ function NoteContainer() {
                     dragConstraints={constraintsRef}
                     dragMomentum={false}
                 className='relative'>
-                    <div key={index} className={isExpanded[index] ? 'space-y-6 relative mx-auto w-[100%] lg:w-1/2 h-auto ring-1 rounded-lg py-2 px-4' : 'relative w-[100%] lg:w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'}
+                    <div key={index} className={isExpanded[index] ? 'space-y-6 relative mx-auto w-[100%] lg:w-[300px] h-auto ring-1 rounded-lg py-2 px-4' : 'relative w-[100%] lg:w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'}
                     style={{
                         'boxShadow':  '2px 2px 12px #d1d5dc, -2px -2px 12px #d1d5dc',
                         backgroundColor: noteBgColor[index] || '#ffffff',
@@ -179,7 +180,7 @@ function NoteContainer() {
                 >
                     <div className='flex justify-between items-center'>
                         <h2 className='font-medium text-[18px] poppins-medium text-gray-600'>{item.title}</h2>
-                        <span className='text-lg cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><VscPinned /></span>
+                        <span className='text-lg cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full' onClick={() => setIsPinnedTrue(!isPinnedTrue)}>{ isPinnedTrue ? (<BsPinFill/>) : (<BsPin />)}</span>
                     </div>
                     <div 
                         onClick={() => expandNode(index)}
