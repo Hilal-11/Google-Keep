@@ -1,5 +1,7 @@
 const Model = require('../models/authSchema')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 const signUp = async (req , res) => {
     const { username , email , password } = req.body;
     if(!username || !email || !password) {
@@ -27,9 +29,20 @@ const signUp = async (req , res) => {
         })
 
                                     // GENERATE JWT( JSON WEB TOKEN )
-        
+        const token = await jwt.sign(
+            {
+                userId: user._id,
+                email: user.email
+            },
+            process.env.SECRET_KEY,
+            {
+                expiresIn: '5d'
+            }
+        )
+
         return res.json({
             success: true,
+            token: token,
             message: "user created successfully"
         })
     }catch(error) {
