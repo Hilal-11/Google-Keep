@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 function Login() {
 
-  const [state , setState] = useState('SignUp')
+  const [state , setState] = useState('Sign Up')
   const [username , setUsername] = useState();
   const [email , setEmail] = useState();
   const [password , setPassword] = useState();
@@ -14,11 +14,11 @@ function Login() {
           {/* FORM CONTAINER */}
           <div className=' w-full rounded-tl-lg rounded-l-lg col-span-2'>
             <div className="flex items-center justify-center">
-              <div className="bg-white rounded-md shadow-lg p-8 w-full max-w-md">
+              <div className="rounded-md shadow-lg p-8 w-full max-w-md">
                 <h2 className="text-3xl  text-center text-gray-800 mb-0 poppins-bold">{state === 'Sign Up' ? (<span>Create Account</span>) : (<span>Login</span>)}</h2>
                 <p className='poppins-light text-[13px] text-center text-violet-800 mb-8'>Create your Account</p>
 
-                  <form onSubmit={ handleSubmit }>
+                  <form >
                     {/* Username Field */}
                       <div className="mb-8">
                         <div className="flex items-center border px-3 py-3 shadow-md shadow-gray-500 rounded-full">
