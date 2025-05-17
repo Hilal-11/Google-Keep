@@ -1,4 +1,5 @@
-
+const cloudinary = require('../config/cloudinary')
+const Note = require('../models/NoteSchema')
 const keepImages = async(req , res) => {
     // checking the support ----> function
     const checkImageUploadSuport = (type , supportTypes) => {
@@ -17,6 +18,7 @@ const keepImages = async(req , res) => {
                 message: "Image type not support"
             })
         }
+        
     }catch(error) {
         return res.json({
             success: false,
