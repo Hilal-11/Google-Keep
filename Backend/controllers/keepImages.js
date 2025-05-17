@@ -5,6 +5,15 @@ const keepImages = async(req , res) => {
     const checkImageUploadSuport = (type , supportTypes) => {
         return supportTypes.includes(type)
     }
+
+    async function uploadImageToCloudinary(file , folder) {
+        try{
+            
+        }catch(error) {
+
+        }
+    } 
+
     try{
         const { noteId , imageUrl } = req.body;
         const imageFile = req.files.imageFile;  // get the image 
@@ -18,7 +27,7 @@ const keepImages = async(req , res) => {
                 message: "Image type not support"
             })
         }
-        
+        const response = await uploadImageToCloudinary(imageFile , cloudinary)
     }catch(error) {
         return res.json({
             success: false,
