@@ -2,7 +2,7 @@ const Note = require('../models/NoteSchema');
 
 const keepNote = async (req , res) => {
     const { title , content , color } = req.body;
-    if(!title || !content || !color) {
+    if(!title || !content) {
         return res.json({
             success: false,
             message: "Missing note requirements"
