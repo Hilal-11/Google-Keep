@@ -13,7 +13,7 @@ import { MdOutlineSearch } from "react-icons/md";
 import { motion } from "motion/react"
 import { useNavigate } from 'react-router-dom';
 function Header() {
-  const [isLoggedIn , setIsLoggedIn] = useState(false)
+  const [isLoggedIn , setIsLoggedIn] = useState(true)
   const { isOpenMenu, setIsOpenMenu } = useContext(AppContext)
   const navigate = useNavigate('')
   return (
@@ -44,9 +44,9 @@ function Header() {
               isLoggedIn ? (                    
                 <div className='relative group'>
                   <Stack direction="row" spacing={2}>
-                          <Avatar className='bg-black cursor-pointer  py-0 px-0' alt="Remy Sharp" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY2PRnxPr8rX7NOWGRK63y4NGffjANp_V0qXYQ9msj1w0sqj7Zn8PhrI8jwpsmVZn8Lsc&usqp=CAU' />
+                          <Avatar className='bg-black cursor-pointer  py-0 px-0' alt="Sabiya Sharp" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY2PRnxPr8rX7NOWGRK63y4NGffjANp_V0qXYQ9msj1w0sqj7Zn8PhrI8jwpsmVZn8Lsc&usqp=CAU' />
                           <div className='hidden group-hover:block w-[120px] bg-white z-50 text-[14px] absolute right-0 lg:-left-10 top-14 lg:top-10 py-2 rounded-sm poppins-regular text-center shadow-sm shadow-gray-400'>
-                              <button className='px-2 py-1 whitespace-nowrap cursor-pointer hover:bg-slate-100 w-full'>Logout</button>
+                              <button onClick={() => setIsLoggedIn(false)} className='px-2 py-1 whitespace-nowrap cursor-pointer hover:bg-slate-100 w-full'>Logout</button>
                               <button className='px-2 py-1 whitespace-nowrap cursor-pointer hover:bg-slate-100 w-full'>Varify Account</button>
                           </div>
                   </Stack>
