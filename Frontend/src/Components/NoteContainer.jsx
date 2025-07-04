@@ -164,12 +164,11 @@ function NoteContainer() {
             (listOfNotes.length < 1) ? (<NoNote />) :
             listOfNotes.map((item , index) => (
                 <motion.div
-                    
                     key={index}
-                    drag={isDraggable}
-                    dragElastic={0.2}
-                    dragSnapToOrigin={true}
-                    dragConstraints={constraintsRef}
+                    // drag={isDraggable}
+                    // dragElastic={0.2}
+                    // dragSnapToOrigin={true}
+                    // dragConstraints={constraintsRef}
                     dragMomentum={false}
                 className='relative'>
                     <div key={index} className={isExpanded[index] ? 'space-y-6 relative mx-auto w-[100%] lg:w-[300px] h-auto ring-1 rounded-lg py-2 px-4' : 'relative w-[100%] lg:w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'}
