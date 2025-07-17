@@ -27,9 +27,18 @@ function NoteContainer() {
     const getAllNotes = async () => {
         const response = await fetch('http://localhost:4000/api/keep/getNotes')
         const data = await response.json()
-        listOfNotes.push(data)
+        setListOfNotes(data.data)
         // setListOfNotes(data)
     }
+
+
+        // get all created notes
+    useEffect(() => {
+        getAllNotes();
+    }, [])
+
+    console.log(listOfNotes)
+
     const handleCreateNote = (event) => {
         const note = {
             title: noteTitle,
@@ -64,10 +73,7 @@ function NoteContainer() {
         setIsOpenNoteInput(false)
     }
 
-    // get all created notes
-    useEffect(() => {
-        getAllNotes();
-    }, [])
+
 
 
     // FOR NOTE ICONS --> OPTIONS
@@ -214,7 +220,7 @@ function NoteContainer() {
                     <div 
                         onClick={() => expandNode(index)}
                         className={isExpanded[index] ? 'w-full h-auto ' : ' overflow-hidden max-h-[300px] p-1'}>
-                        <p className='py-2 text-[14px] poppins-regular text-[#4a5565]'>{item.discription}</p>
+                        <p className='py-2 text-[14px] poppins-regular text-[#4a5565]'>{item.content}</p>
                     </div>
                     <div className='absolute bottom-1 flex text-gray-700 justify-evenly w-[90%]'>
 
