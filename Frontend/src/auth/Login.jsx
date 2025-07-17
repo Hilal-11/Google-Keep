@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { AppContext } from '../Context/ContextApi';
+import { useContext } from 'react';
 function Login() {
 
+  
+  const [isLoggedin , setIsLoggedin] = useContext(AppContext)
   const [state , setState] = useState('Sign Up')
   const [username , setUsername] = useState();
   const [email , setEmail] = useState();
@@ -17,7 +21,7 @@ function Login() {
     }
 
     if(state === 'Sign Up'){
-        fetch('http://localhost:4000/api/v1/signUp', {
+        fetch('http://localhost:4000/api/auth/signUp', {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
@@ -27,6 +31,7 @@ function Login() {
           console.log(response)
 
           if(response.ok) {
+            setIsLoggedin(true)
             navigate('/')
           }
 
@@ -35,7 +40,7 @@ function Login() {
         })
     }
     else if(state === 'Login'){
-        fetch('http://localhost:4000/api/v1/login', {
+        fetch('http://localhost:4000/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
@@ -45,6 +50,7 @@ function Login() {
           console.log(response)
 
           if(response.ok) {
+            setIsLoggedin(true)
             navigate('/')
           }
 
