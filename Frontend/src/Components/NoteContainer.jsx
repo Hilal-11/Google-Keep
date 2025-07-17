@@ -23,6 +23,12 @@ function NoteContainer() {
     const [noteDetails , setNoteDetails] = useState('');
     const [isPinnedTrue , setIsPinnedTrue] = useState(false)
     const [listOfNotes , setListOfNotes] = useState([])
+    
+    const getAllNotes = async () => {
+        const data = await fetch('http://localhost:4000/api/getNotes')
+        const response = data.json();
+        setListOfNotes(response)
+    }
     const handleCreateNote = (event) => {
         const note = {
             title: noteTitle,
@@ -30,14 +36,37 @@ function NoteContainer() {
         }
         if(note.title === '' && note.discription === ''){
             toast.error("Please Provide Title and Note")
-        }else{
-            listOfNotes.push(note)
         }
+        // else{
+        //     listOfNotes.push(note)
+        // }
+
+        fetch('http://localhost:4000/api/keepNote' , {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(note)
+        }).then(res => {
+            console.log(res)
+            if(res.ok) {
+                getAllNotes();
+            }
+        }).catch(error => {
+            toast.error(error.message)
+        }) 
+
+
         setNoteTitle('')
         setNoteDetails('')
         event.stopPropagation()
         setIsOpenNoteInput(false)
     }
+
+    // get all created notes
+    useEffect(() => {
+        getAllNotes();
+    }, [])
 
 
     // FOR NOTE ICONS --> OPTIONS
