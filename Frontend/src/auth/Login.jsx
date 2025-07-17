@@ -15,7 +15,44 @@ function Login() {
       email,
       password
     }
-    console.log(formData)
+
+    if(state === 'Sign Up'){
+        fetch('http://localhost:4000/api/v1/signUp', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+        }).then((response) => {
+          console.log(response)
+
+          if(response.ok) {
+            navigate('/')
+          }
+
+        }).catch(error => {
+          console.log(error.message)
+        })
+    }
+    else if(state === 'Login'){
+        fetch('http://localhost:4000/api/v1/login', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+        }).then((response) => {
+          console.log(response)
+
+          if(response.ok) {
+            navigate('/')
+          }
+
+        }).catch(error => {
+          console.log(error.message)
+        })
+    }
+
     setUsername('')
     setEmail('')
     setPassword('')
