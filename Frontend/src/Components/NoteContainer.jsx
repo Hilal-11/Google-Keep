@@ -25,9 +25,10 @@ function NoteContainer() {
     const [listOfNotes , setListOfNotes] = useState([])
     
     const getAllNotes = async () => {
-        const data = await fetch('http://localhost:4000/api/getNotes')
-        const response = data.json();
-        setListOfNotes(response)
+        const response = await fetch('http://localhost:4000/api/keep/getNotes')
+        const data = await response.json()
+        listOfNotes.push(data)
+        // setListOfNotes(data)
     }
     const handleCreateNote = (event) => {
         const note = {
@@ -38,10 +39,10 @@ function NoteContainer() {
             toast.error("Please Provide Title and Note")
         }
         // else{
-        //     listOfNotes.push(note)
+        //     
         // }
 
-        fetch('http://localhost:4000/api/keepNote' , {
+        fetch('http://localhost:4000/api/keep/keepNote' , {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -190,7 +191,7 @@ function NoteContainer() {
         <div ref={constraintsRef} className='relative w-full h-auto mt-8 flex flex-wrap justify-center items-start gap-8 z-10 pb-10'>
             {/* NOTE CONTAINER */}
         {
-            (listOfNotes.length < 1) ? (<NoNote />) :
+            (!listOfNotes) ? (<NoNote />) :
             listOfNotes.map((item , index) => (
                 <motion.div
                     key={index}
