@@ -3,6 +3,7 @@ const getNotes = async (req , res) => {
     try{
         const getNotes = await Note.find({})
         res.json({
+            data: getNotes,
             success: true,
             message: "All Notes are fetched"
         })
