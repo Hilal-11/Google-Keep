@@ -12,8 +12,9 @@ import avatarImg from '../assets/GoogleKeep.png'
 import { MdOutlineSearch } from "react-icons/md";
 import { motion } from "motion/react"
 import { useNavigate } from 'react-router-dom';
+
 function Header() {
-  const [isLoggedIn , setIsLoggedIn] = useContext(AppContext)
+  const { isLoggedIn , setIsLoggedIn } = useContext(AppContext)
   const { isOpenMenu, setIsOpenMenu } = useContext(AppContext)
   const navigate = useNavigate('')
   return (

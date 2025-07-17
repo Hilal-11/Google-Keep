@@ -5,7 +5,7 @@ import { useContext } from 'react';
 function Login() {
 
   
-  const [isLoggedin , setIsLoggedin] = useContext(AppContext)
+  const { isLoggedIn, setIsLoggedIn } = useContext(AppContext)
   const [state , setState] = useState('Sign Up')
   const [username , setUsername] = useState();
   const [email , setEmail] = useState();
@@ -31,7 +31,7 @@ function Login() {
           console.log(response)
 
           if(response.ok) {
-            setIsLoggedin(true)
+            setIsLoggedIn(true)
             navigate('/')
           }
 
@@ -50,7 +50,7 @@ function Login() {
           console.log(response)
 
           if(response.ok) {
-            setIsLoggedin(true)
+            setIsLoggedIn(true)
             navigate('/')
           }
 
