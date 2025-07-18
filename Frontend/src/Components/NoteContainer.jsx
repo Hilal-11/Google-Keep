@@ -37,7 +37,7 @@ function NoteContainer() {
         getAllNotes();
     }, [])
 
-    console.log(listOfNotes)
+
 
     const handleCreateNote = (event) => {
         const note = {

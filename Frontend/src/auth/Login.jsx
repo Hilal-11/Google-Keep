@@ -6,6 +6,7 @@ function Login() {
 
   
   const { isLoggedIn, setIsLoggedIn } = useContext(AppContext)
+  const { storeTokenInLocalStorage } = useContext(AppContext)
   const [state , setState] = useState('Sign Up')
   const [username , setUsername] = useState();
   const [email , setEmail] = useState();
@@ -28,16 +29,14 @@ function Login() {
         },
         body: JSON.stringify(formData)
         }).then((response) => {
-          console.log(response)
-
-          if(response.ok) {
-            const data = response.json()
-            console.log(data)
-
-            setIsLoggedIn(true)
-            navigate('/')
+          response.json().then(data => {
+            if(response.ok) {
+              // store token in local storege
+              storeTokenInLocalStorage(data.token);
+              setIsLoggedIn(true)
+              navigate('/')
           }
-
+        })
         }).catch(error => {
           console.log(error.message)
         })
@@ -50,15 +49,14 @@ function Login() {
         },
         body: JSON.stringify(formData)
         }).then((response) => {
-          console.log(response)
-
-          if(response.ok) {
-            const data = response.json()
-            console.log(data)
-            setIsLoggedIn(true)
-            navigate('/')
+          response.json().then(data => {
+            if(response.ok) {
+              // store token in local storege
+              storeTokenInLocalStorage(data.token);
+              setIsLoggedIn(true)
+              navigate('/')
           }
-
+          })
         }).catch(error => {
           console.log(error.message)
         })
