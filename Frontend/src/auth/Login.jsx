@@ -5,7 +5,7 @@ import { useContext } from 'react';
 function Login() {
 
   
-  const { isLoggedIn, setIsLoggedIn } = useContext(AppContext)
+  const { setIsLoggedIn } = useContext(AppContext)
   const { storeTokenInLocalStorage } = useContext(AppContext)
   const [state , setState] = useState('Sign Up')
   const [username , setUsername] = useState();
@@ -167,7 +167,7 @@ function Login() {
   </div>
           {/* SHOWCASE CONTAINER */}
           <div className='hidden lg:flex justify-center items-center rounded-tr-lg rounded-r-lg '>
-              <img className='h-[100%] bg-contain' src="https://res.cloudinary.com/prod/image/upload/f_auto,q_auto/registration-and-sign-up/register_free--right-background.png" alt="" />
+              <img className='h-[100%] bg-contain' src="https://jsmastery.com/_next/image?url=%2Fassets%2Fgeneral%2Fimages%2Fhero-img.webp&w=640&q=75" alt="" />
           </div>
 
         </div>

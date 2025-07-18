@@ -12,11 +12,12 @@ import SideBar from './Components/SideBar'
 import { useContext } from 'react'
 import { AppContext } from './Context/ContextApi'
 import Login from './auth/Login'
+import Logout from './auth/Logout'
 function App() {
 
   const { isOpenMenu } = useContext(AppContext)
   const location = useLocation()
-  const noHeaderSidebarRoutes = ['/login']
+  const noHeaderSidebarRoutes = ['/login', '/logout']
   const shouldShowHeaderSidebar = !noHeaderSidebarRoutes.includes(location.pathname)
 
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path='/archive' element={<Archive />} />
           <Route path='/bin' element={<Bin />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/logout' element={<Logout />} />
         </Routes>
     </div>
 

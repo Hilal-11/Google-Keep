@@ -17,6 +17,13 @@ function Header() {
   const { isLoggedIn , setIsLoggedIn } = useContext(AppContext)
   const { isOpenMenu, setIsOpenMenu } = useContext(AppContext)
   const navigate = useNavigate('')
+
+  const logout = () => {
+    localStorage.removeItem('token')
+    setIsLoggedIn(false)
+    navigate('/logout')
+  }
+
   return (
     <div>
         <div className='bg-white fixed z-50 top-0 left-0 right-0 w-full grid grid-cols-3 justify-between lg:justify-evenly ring-gray-300 ring-1 py-2 lg:px-10'>
@@ -47,7 +54,7 @@ function Header() {
                   <Stack direction="row" spacing={2}>
                           <Avatar className='bg-black cursor-pointer  py-0 px-0' alt="Sabiya Sharp" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY2PRnxPr8rX7NOWGRK63y4NGffjANp_V0qXYQ9msj1w0sqj7Zn8PhrI8jwpsmVZn8Lsc&usqp=CAU' />
                           <div className='hidden group-hover:block w-[120px] bg-white z-50 text-[14px] absolute right-0 lg:-left-10 top-14 lg:top-10 py-2 rounded-sm poppins-regular text-center shadow-sm shadow-gray-400'>
-                              <button onClick={() => setIsLoggedIn(false)} className='px-2 py-1 whitespace-nowrap cursor-pointer hover:bg-slate-100 w-full'>Logout</button>
+                              <button onClick={ logout() } className='px-2 py-1 whitespace-nowrap cursor-pointer hover:bg-slate-100 w-full'>Logout</button>
                               <button className='px-2 py-1 whitespace-nowrap cursor-pointer hover:bg-slate-100 w-full'>Varify Account</button>
                           </div>
                   </Stack>
@@ -64,7 +71,7 @@ function Header() {
                     ease: 'easeInOut',
                     duration: 0.1
                   }}
-                  className='cursor-pointer shadow-sm shadow-gray-400 px-3 py-1 lg:px-5 lg:py-2 rounded-full poppins-regular'
+                  className='cursor-pointer shadow-sm shadow-gray-400 px-3 py-1 lg:px-5 lg:py-1 rounded-full poppins-regular'
                     onClick={() => navigate('/login')}
                   >
                     Login
