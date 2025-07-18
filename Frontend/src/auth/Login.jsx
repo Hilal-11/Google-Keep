@@ -12,7 +12,7 @@ function Login() {
   const [password , setPassword] = useState();
   const navigate = useNavigate('')
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = {
       username,
@@ -31,6 +31,9 @@ function Login() {
           console.log(response)
 
           if(response.ok) {
+            const data = response.json()
+            console.log(data)
+
             setIsLoggedIn(true)
             navigate('/')
           }
@@ -50,6 +53,8 @@ function Login() {
           console.log(response)
 
           if(response.ok) {
+            const data = response.json()
+            console.log(data)
             setIsLoggedIn(true)
             navigate('/')
           }
