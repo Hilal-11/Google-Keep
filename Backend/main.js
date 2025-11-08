@@ -1,17 +1,21 @@
+import express from 'express';
+import connectDB from './src/config/database'
+import app_routes from './src/routes/authRoutes';
+import keepNotes_routes from './src/routes/keepNotes'
 
-const express = require('express');
-const connectDB = require('./config/database')
-const app_routes = require('./routes/app_routes')
-const keepNotes_routes = require('./routes/keepNotes')
-
-const cors = require('cors')
-const cookieParser = require('cookie-parser')
-require('dotenv').config();
+import cors from 'cors'
+import cookieParser from 'cookie-parser'
+import dotenv from 'dotenv'
+dotenv.config()
 const PORT = process.env.PORT;
 const app = express();
 
 app.use(cors({
-    origin: ['http://localhost:5173'],
+    origin: [
+        'http://localhost:5173',
+        'http://localhost:3000',
+        //procuction IP ( URL )
+    ],
     credentials: true,
 }));
 
@@ -27,7 +31,4 @@ app.listen(PORT , () => {
     console.log(`App is running on PORT:${PORT}`)
 })
 
-
 connectDB();
-
-
