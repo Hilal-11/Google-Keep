@@ -1,15 +1,31 @@
-const mongoose = require('mongoose')
-require('dotenv').config();
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+import logger from "../logger/winston.logger"
+dotenv.config();
 
 const connectDB = async () => {
     try{
         await mongoose.connect(process.env.DATABASE_URL);
-        console.log("Database connection successfully")
+        logger.info("Database connection successfully")
     }catch(error){
-        console.log(error.message)
-        console.log("Failed to connect with database")
+        logger.error("Database connection failed", { error: error.message })
         process.exit(1);
     }
-}
+    mongoose.connection.on("connected" , () => {
+        logger.info("MongoDB connected")
+    })
+    mongoose.connection.on("error", (error) => {
+        logger.error("MongoDB connection error", { error: error.message })
+    })
+    mongoose.connection.on('disconnected', () => {
+        logger.warn('MongoDB disconnected');
+    });
 
-module.exports = connectDB;
+    process.on("SIGINT" , async () => {
+        await mongoose.connection.close();
+        logger.info('MongoDB connection closed due to app termination');
+        process.exit(0);
+    })
+
+}
+export default connectDB
