@@ -3,7 +3,7 @@ import ApiError from '../utils/api-error'
 import { asyncHandler } from '../utils/async-handler'
 import User from '../models/UserSchema'
 
-const varifyJWT = asyncHandler(async(req , res , next) => {
+const verifyJWT = asyncHandler(async(req , res , next) => {
     const token = req.cookies?.accessToken || req.header("Authorization").replace("Bearer ", "")
     if(!token) {
         return new ApiError(
@@ -44,4 +44,4 @@ const isAuthenticate = asyncHandler(async(req , res , next) => {
     }
 })
 
-export default { varifyJWT , isAuthenticate }
+export default { verifyJWT , isAuthenticate }

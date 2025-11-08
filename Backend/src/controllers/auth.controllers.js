@@ -8,7 +8,7 @@ const generateRefreshToken = (req , res) => {
 
 }
 
-const signup = asyncHandler(async (req , res) => {
+const signin = asyncHandler(async (req , res) => {
 
 })
 const login = asyncHandler(async (req , res) => {
@@ -18,11 +18,11 @@ const logout = asyncHandler(async (req , res) => {
     
 })
 
-const varifyEmail = asyncHandler(async (req , res) => {
+const verifyEmail = asyncHandler(async (req , res) => {
     
 })
 
-const resendVarificationEmail = asyncHandler(async (req , res) => {
+const resendVerificationEmail = asyncHandler(async (req , res) => {
     
 })
 const forgetPasswordRequest = asyncHandler(async (req , res) => {
@@ -46,11 +46,11 @@ const userProfile = asyncHandler(async (req , res) => {
 
 
 export { 
-    signup , 
+    signin , 
     login , 
     logout , 
-    varifyEmail , 
-    resendVarificationEmail ,
+    verifyEmail , 
+    resendVerificationEmail ,
     generateRefreshToken ,  
     refreshAccessToken , 
     forgetPasswordRequest , 

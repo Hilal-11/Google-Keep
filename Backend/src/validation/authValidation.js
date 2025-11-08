@@ -1,6 +1,6 @@
 import { body , params } from "express-validator"
 
-const signUpValidator = () => {
+const signInValidator = () => {
     return [
         body("username")
             .isString()
@@ -59,4 +59,4 @@ const changeCurrentPasswordValidator = () => {
     ]
 }
 
-export default { signUpValidator , loginValidator , resetPasswordValidator , changeCurrentPasswordValidator }
+export default { signInValidator , loginValidator , resetPasswordValidator , changeCurrentPasswordValidator }
