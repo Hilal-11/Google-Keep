@@ -21,7 +21,7 @@ const deleteNote = asyncHandler(async (req , res) => {
 
 })
 
-const serachNote = asyncHandler(async (req , res) => {
+const searchNote = asyncHandler(async (req , res) => {
 
 })
 
@@ -37,7 +37,7 @@ const restoreNoteFromBin = asyncHandler(async (req , res) => {
 
 })
 
-const deleteNotePermenentFromBin = asyncHandler(async (req , res) => {
+const deleteNotePermanentFromBin = asyncHandler(async (req , res) => {
 
 })
 
@@ -68,10 +68,10 @@ export default {
     getNotes,
     updateNote,
     deleteNote,
-    serachNote,
+    searchNote,
     getBinNotes,
     restoreNoteFromBin,
-    deleteNotePermenentFromBin,
+    deleteNotePermanentFromBin,
     emptyBin,
     archiveNote,
     getArchiveNotes,
