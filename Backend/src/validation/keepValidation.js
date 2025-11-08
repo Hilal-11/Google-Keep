@@ -17,7 +17,6 @@ const createNoteValidator = () =>  {
         ,
     ]
 }
-
 const updateNoteValidator = () => {
     return [
         body("note_title")
