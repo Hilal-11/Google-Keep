@@ -19,6 +19,7 @@ import {
   resendVerificationEmail,
   forgetPasswordRequest,
   changeCurrentPassword,
+  refreshAccessToken,
   resetPassword,
   userProfile
 } from "../controllers/auth.controllers.js";
@@ -27,7 +28,7 @@ import {
 router.route("/signin").post(signInValidator(), validator, signin)
 router.route("/login").post(loginValidator() , validator , login)
 router.route("/varify-email/:varificationToken").get(verifyEmail);
-
+router.route("/refresh-token").post(refreshAccessToken);
 
 router.route("/forget-password").post(forgetPasswordRequest);
 router.route("/reset-password/:resetToken").post(resetPasswordValidator(), validator , resetPassword);
