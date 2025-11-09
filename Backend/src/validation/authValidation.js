@@ -1,4 +1,4 @@
-import { body , params } from "express-validator"
+import { body , param, params } from "express-validator"
 
 const signInValidator = () => {
     return [
@@ -56,6 +56,14 @@ const changeCurrentPasswordValidator = () => {
     return [
         body("oldPassword").notEmpty().withMessage("Old password is required"),
         body("newPassword").notEmpty().withMessage("New password is required"),
+    ]
+}
+
+// token checking validation
+
+const varificatioTokenValidator = () => {
+    return [
+        // param("emailVarificationToken").notEmpty().
     ]
 }
 
