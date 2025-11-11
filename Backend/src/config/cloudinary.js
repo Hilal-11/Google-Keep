@@ -1,7 +1,7 @@
 import cloudinary from "cloudinary"
 import dotenv from "dotenv"
 dotenv.config();
-import logger from "../logger/winston.logger"
+import logger from "../logger/winston.logger.js"
  
 const cloudinaryConnect = async () => {
   try{
@@ -18,4 +18,4 @@ const cloudinaryConnect = async () => {
   }
 }
 
-export default cloudinaryConnect();
+export default cloudinaryConnect;
