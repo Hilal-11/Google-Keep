@@ -1,8 +1,11 @@
 import express from 'express';
-import connectDB from './src/config/database'
-import app_routes from './src/routes/authRoutes';
-import keep_routes from './src/routes/keepNotes'
+import connectDB from './src/config/database.js'
+import cloudinaryConnect from './src/config/cloudinary.js'
+
+import app_routes from './src/routes/authRoutes.js';
+import keep_routes from './src/routes/keepNotes.js'
 import fileUpload from "express-fileupload"
+
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
@@ -31,8 +34,18 @@ app.get('/' , (req , res) => {
     res.send("<h1>Authentication and Autherization for Google keep</h1>")
 })
 
-app.listen(PORT , () => {
-    console.log(`App is running on PORT:${PORT}`)
-})
 
-connectDB();
+connectDB()
+    .then(() => {
+        app.listen(PORT , () => {
+            console.log(`App is running on PORT:${PORT}`)
+        })
+    }).catch((error) => {
+        console.log(error.message);
+    })
+cloudinaryConnect()
+    .then(() => {
+        console.log("Cloudinary is connected successful")
+    }).catch((error) => {
+        console.log(error.message);
+    })
