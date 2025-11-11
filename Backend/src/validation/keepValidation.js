@@ -1,4 +1,4 @@
-import { body , param } from 'express-validator'
+import { body } from 'express-validator'
 
 const createNoteValidator = () =>  {
     return [
@@ -41,4 +41,4 @@ const updateNoteValidator = () => {
     ]
 }
 
-export default { createNoteValidator , updateNoteValidator }
+export { createNoteValidator , updateNoteValidator }
