@@ -1,21 +1,21 @@
 
-import { ApiResponse } from "../utils/api-response"
-import ApiError from "../utils/api-error"
-import { asyncHandler } from "../utils/async-handler"
-import User from "../models/UserSchema"
+import { ApiResponse } from "../utils/api-response.js"
+import ApiError from "../utils/api-error.js"
+import { asyncHandler } from "../utils/async-handler.js"
+import User from "../models/UserSchema.js"
 import JWT from "jsonwebtoken"
 import crypto from "crypto"
-import { sendMail , emailVarificationMailGenContent , welcomeRegisterMessage , forgotPasswordMailGenContent } from "../utils/mail"
+import { sendMail , emailVarificationMailGenContent , welcomeRegisterMessage , forgotPasswordMailGenContent } from "../utils/mail.js"
 
 
 const generateAccessAndRefreshToken = async(userId) => {
     try{
         const user = await User.findById(userId);
         if(!user) {
-            return new ApiError(401, "User not found")
+            throw new ApiError(401, "User not found")
         }
-        const accessToken = user.generateAccessToken;
-        const refreshToken = user.generateRefreshToken;
+        const accessToken = user.generateAccessToken();
+        const refreshToken = user.generateRefreshToken();
 
         user.accessToken = accessToken;
         await user.save({ validateBeforeSave: false })
@@ -32,7 +32,7 @@ const signin = asyncHandler(async (req , res) => {
             $or: [{ username }, {email}]
         })
         if(existUser) {
-            return new ApiError(500 ,"User already exists")
+            throw new ApiError(500 ,"User already exists")
         }
         const user = await User.create({
             username,
@@ -62,7 +62,7 @@ const signin = asyncHandler(async (req , res) => {
         const createUser = User.findById(user?._id).select("-password -emailVarifivationToken -emailVarifivationTokenExpiry")
 
         if(!createUser) {
-            return new ApiError(401 , "User not exists")
+            throw new ApiError(401 , "User not exists")
         }
         return res.status(200).json(
             new ApiResponse(
@@ -79,7 +79,7 @@ const signin = asyncHandler(async (req , res) => {
 const verifyEmail = asyncHandler(async (req , res) => {
     const { varificatioToken } = req.params;
     if(!varificatioToken){
-        return new ApiError(401 , "Invalid varification token")
+        throw new ApiError(401 , "Invalid varification token")
     }
 
     try{
@@ -94,7 +94,7 @@ const verifyEmail = asyncHandler(async (req , res) => {
         })
 
         if(!user) {
-            return new ApiError(401, "user not found, invalid token")
+            throw new ApiError(401, "user not found, invalid token")
         }
 
         user.emailVarifivationToken = undefined
@@ -121,14 +121,14 @@ const resendVerificationEmail = asyncHandler(async (req , res) => {
     const user = await User.findById(req?.user._id)
     // validate
     if(!user) {
-        return new ApiError(
+        throw new ApiError(
             400,
             "user not exists"
         )
     }
     // check first is user already varify or not
     if(user.isVarified) {
-        return new ApiError(400, "User email already varified")
+        throw new ApiError(400, "User email already varified")
     }
     // generate hashed and unhashed token ---- store hashed on DB and send unhashed to user 
     const { hashedToken , unHashedToken , tokenExpiry } = user.generateTemporaryToken();
@@ -164,12 +164,12 @@ const login = asyncHandler(async (req , res) => {
             $or: [{ username }, { email }],
         });
         if(!user) {
-            return new ApiError(401 ,"User not exists")
+            throw new ApiError(401 ,"User not exists")
         }
 
         const isPasswordValid = await user.comparePassword(password)
         if(!isPasswordValid) {
-            return new ApiError(401, "Invalid username and password, ailed to login")
+            throw new ApiError(401, "Invalid username and password, ailed to login")
         }
 
         const { accessToken , refreshToken } = generateAccessAndRefreshToken(user._id)
@@ -240,7 +240,7 @@ const forgetPasswordRequest = asyncHandler(async (req , res) => {
     
     const user = await User.findOne(email);
     if(!user) {
-        return new ApiError(401 , "User not exists")
+        throw new ApiError(401 , "User not exists")
     }
 
     const { unHashedToken, hashedToken, tokenExpiry } = user.generateTemporaryToken();
@@ -290,7 +290,7 @@ const refreshAccessToken = asyncHandler(async (req , res) => {
     }
 
     if(incomingRefreshToken !== user.refreshToken) {
-        return new ApiError(401 , "Refresh token is expired or used")
+        throw new ApiError(401 , "Refresh token is expired or used")
     }
 
     const { accessToken , refreshToken: newRefreshToken } = user.generateAccessAndRefreshToken(user._id)
@@ -334,7 +334,7 @@ const resetPassword = asyncHandler(async (req , res) => {
         })
 
         if(!user) {
-            return new ApiError(401, "User not forun, invalid reset password token")
+            throw new ApiError(401, "User not forun, invalid reset password token")
         }
 
         user.forgetPasswordToken = undefined
@@ -356,13 +356,13 @@ const changeCurrentPassword = asyncHandler(async (req , res) => {
     const user = await User.findById(req,user._id)
     
     if(!user) {
-        return new ApiError(404 , "user not found")
+        throw new ApiError(404 , "user not found")
     }
 
     const isPasswordValid = await user.comparePassword(oldPassword);
 
     if(!isPasswordValid) {
-        return new ApiError(401, "Incorrect Password, please enter valid password")
+        throw new ApiError(401, "Incorrect Password, please enter valid password")
     }
 
     user.password = newPassword;
@@ -388,8 +388,7 @@ export {
     login , 
     logout , 
     verifyEmail , 
-    resendVerificationEmail ,
-    generateRefreshToken ,  
+    resendVerificationEmail ,  
     refreshAccessToken , 
     forgetPasswordRequest , 
     changeCurrentPassword , 
