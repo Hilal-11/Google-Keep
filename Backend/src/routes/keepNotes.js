@@ -17,6 +17,17 @@ import {
 import validator from '../middlewares/validate.js';
 
 
+// testing route
+router.route("/test2").get(async (req , res) => {
+  res.json({
+    name: "Testing 2",
+    sucees: true,
+    status: 200,
+    message: "Hey bro backend is working, you are listning from http://localhots:3000/api/v1/keep/test2"
+  })
+})
+
+
 router.route("/create-note").post(createNoteValidator(), validator, createNote);
 router.route("/get-notes").get(getNotes);
 router.route("/update-note/:id").patch(updateNoteValidator() , validator, updateNote);

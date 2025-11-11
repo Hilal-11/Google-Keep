@@ -2,7 +2,7 @@ import express from 'express';
 import connectDB from './src/config/database.js'
 import cloudinaryConnect from './src/config/cloudinary.js'
 
-import app_routes from './src/routes/authRoutes.js';
+import auth_routes from './src/routes/authRoutes.js';
 import keep_routes from './src/routes/keepNotes.js'
 import fileUpload from "express-fileupload"
 
@@ -28,7 +28,7 @@ app.use(fileUpload({
     useTempFiles: true,              // Required for Cloudinary
     tempFileDir: "/tmp/",            // Temporary folder for uploads
 }))
-app.use('/api/v1/users' , app_routes);
+app.use('/api/v1/users' , auth_routes);
 app.use('/api/v1/keep' , keep_routes)
 app.get('/' , (req , res) => {
     res.send("<h1>Authentication and Autherization for Google keep</h1>")

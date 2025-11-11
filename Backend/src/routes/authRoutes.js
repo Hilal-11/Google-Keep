@@ -25,6 +25,16 @@ import {
 } from "../controllers/auth.controllers.js";
 
 
+// test route
+router.route("/test").get(async (req , res) => {
+  res.json({
+    name: "Testing",
+    sucees: true,
+    status: 200,
+    message: "Hey bro backend is working, you are listning from http://localhots:3000/api/v1/auth/test"
+  })
+})
+
 router.route("/signin").post(signInValidator(), validator, signin)
 router.route("/login").post(loginValidator() , validator , login)
 router.route("/varify-email/:varificationToken").get(verifyEmail);
