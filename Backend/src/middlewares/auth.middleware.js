@@ -1,7 +1,7 @@
 import JWT from 'jsonwebtoken'
-import ApiError from '../utils/api-error'
-import { asyncHandler } from '../utils/async-handler'
-import User from '../models/UserSchema'
+import ApiError from '../utils/api-error.js'
+import { asyncHandler } from '../utils/async-handler.js'
+import User from '../models/UserSchema.js'
 
 const verifyJWT = asyncHandler(async(req , res , next) => {
     const token = req.cookies?.accessToken || req.header("Authorization").replace("Bearer ", "")
@@ -44,4 +44,4 @@ const isAuthenticate = asyncHandler(async(req , res , next) => {
     }
 })
 
-export default { verifyJWT , isAuthenticate }
+export  { verifyJWT , isAuthenticate }
