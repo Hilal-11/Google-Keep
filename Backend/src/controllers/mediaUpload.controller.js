@@ -1,9 +1,8 @@
-import User from "../models/UserSchema";
-import Note from "../models/NoteSchema"
+import Note from "../models/NoteSchemajs"
 import { cloudinary } from "cloudinary"
-import { asyncHandler } from "../utils/async-handler";
-import ApiError from "../utils/api-error";
-import { ApiResponse } from "../utils/api-response";
+import { asyncHandler } from "../utils/async-handler.js";
+import ApiError from "../utils/api-error.js";
+import { ApiResponse } from "../utils/api-response.js";
 
 
 const uploadImageToCloudinary = async (file , folder) => {
