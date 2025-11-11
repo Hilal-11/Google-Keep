@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const NoteSchema = new mongoose.Schema({
+    id: { type: String },
     note_title: { type: String, trim: true, required: true},
     note_discription: { type: String , trim: true , required: true},
     note_color: { type: String , default: "#ffffff", trim: true},
