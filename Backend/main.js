@@ -1,7 +1,7 @@
 import express from 'express';
 import connectDB from './src/config/database'
 import app_routes from './src/routes/authRoutes';
-import keepNotes_routes from './src/routes/keepNotes'
+import keep_routes from './src/routes/keepNotes'
 import fileUpload from "express-fileupload"
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
@@ -25,8 +25,8 @@ app.use(fileUpload({
     useTempFiles: true,              // Required for Cloudinary
     tempFileDir: "/tmp/",            // Temporary folder for uploads
 }))
-app.use('/api/auth' , app_routes);
-app.use('/api/keep' , keepNotes_routes)
+app.use('/api/v1/users' , app_routes);
+app.use('/api/v1/keep' , keep_routes)
 app.get('/' , (req , res) => {
     res.send("<h1>Authentication and Autherization for Google keep</h1>")
 })
