@@ -5,6 +5,7 @@ import { asyncHandler } from "../utils/async-handler"
 import User from "../models/UserSchema"
 import JWT from "jsonwebtoken"
 import crypto from "crypto"
+import { sendMail , emailVarificationMailGenContent , welcomeRegisterMessage , forgotPasswordMailGenContent } from "../utils/mail"
 
 
 const generateAccessAndRefreshToken = async(userId) => {
@@ -41,11 +42,21 @@ const signin = asyncHandler(async (req , res) => {
         })
         const { unHashedToken , hashedToken , tokenExpiry} = user.generateTemporaryToken;
 
-        user.emailVarifivationToken = unHashedToken;
+        user.emailVarifivationToken = hashedToken;
         user.emailVarifivationTokenExpiry = tokenExpiry;
         user.save({ validateBeforeSave: false });
 
         // send mail and varification emial link/mail
+        await sendMail({
+            email: user?.emial,
+            subject: "Please verify your email",
+            mailgenContent: emailVarificationMailGenContent(
+            user.username,
+            `${req.protocol}://${req.get(
+                "host"
+            )}/api/v1/users/verify-email/${unHashedToken}`
+            ),
+        });
 
         // create response
         const createUser = User.findById(user?._id).select("-password -emailVarifivationToken -emailVarifivationTokenExpiry")
@@ -125,7 +136,16 @@ const resendVerificationEmail = asyncHandler(async (req , res) => {
     user.emailVarifivationTokenExpiry = tokenExpiry
 
     // send mail with email Token link/token
-
+    await sendMail({
+        email: user?.emial,
+        subject: "Resend varifivcation email",
+        mailgenContent: emailVarificationMailGenContent(
+        user.username,
+        `${req.protocol}://${req.get(
+            "host"
+        )}/api/v1/users/verify-email/${unHashedToken}`
+        ),
+    });
     // return response
     return res.status(200).json(
         new ApiResponse(
@@ -225,11 +245,21 @@ const forgetPasswordRequest = asyncHandler(async (req , res) => {
 
     const { unHashedToken, hashedToken, tokenExpiry } = user.generateTemporaryToken();
 
-    user.forgetPasswordToken = unHashedToken;
+    user.forgetPasswordToken = hashedToken;
     user.forgetPasswordTokenExpiry = tokenExpiry;
     await user.save({ validateBeforeSave: false });
 
     // send mail with reset password link with token
+    await sendMail({
+        email: user?.emial,
+        subject: "Password reset request",
+        mailgenContent: forgotPasswordMailGenContent(
+        user.username,
+        //  NOTE: Following link should be the link of the frontend page responsible to request password reset
+        //  Frontend will send the below token with the new password in the request body to the backend reset password endpoint
+        `/api/v1/users/reset-password}/${unHashedToken}`
+        ),
+    });
 
     return res
     .status(200)
