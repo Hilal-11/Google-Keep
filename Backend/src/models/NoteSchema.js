@@ -12,4 +12,5 @@ const NoteSchema = new mongoose.Schema({
     isPinnedNote: { type: Boolean , default: false }
 }, { timestamps: true} )
 
-export default Note = mongoose.model("Note" , NoteSchema)
+const Note = mongoose.model("Note" , NoteSchema)
+export default Note
