@@ -109,9 +109,9 @@ const mediaUpload = asyncHandler(async (req, res) => {
 })
 
 
-const avatarUploadHandler = asyncHandler(async (req , res) => {
+// const avatarUploadHandler = asyncHandler(async (req , res) => {
     
-})
+// })
 
 
-export { mediaUpload , avatarUploadHandler };
+export { mediaUpload };
