@@ -15,6 +15,11 @@ const createNoteValidator = () =>  {
             .notEmpty()
             .withMessage("Discription is required")
         ,
+        body("note_mediaFile")
+            .isString()
+            .optional()
+            .withMessage("Discription is required")
+        ,
     ]
 }
 const updateNoteValidator = () => {
