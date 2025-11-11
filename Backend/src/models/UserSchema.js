@@ -2,9 +2,9 @@ import mongoose from 'mongoose'
 import bcrypt from "bcrypt"
 import JWT from "jsonwebtoken"
 import crypto from 'crypto'
-const UserSchema = new mongoose.Schema( {
+const UserSchema = new mongoose.Schema({
     username: { type: String , required: true, trim: true },
-    emial: { type: String , required: true, trim: true , lowercase: true},
+    email: { type: String , required: true, trim: true , lowercase: true},
     password: { type: String, required: true, trim: true },
     role: { type: String, enum:["user" , "admin"] , default: "user"},
     isVarified: { type: Boolean , default: false},
@@ -23,14 +23,14 @@ const UserSchema = new mongoose.Schema( {
 }, { timestamps: true })
 
 UserSchema.pre("save", async function (next){
-    if(isModified(this.password)) {
+    if(this.isModified("password")) {
         this.password = await bcrypt.hash(this.password , 10);
     }
     next();
 })
 // compare password
-UserSchema.method.comparePassword = async function (password) {
-    return await bcrypt.compare(this.password , password)
+UserSchema.methods.comparePassword = async function (password) {
+    return await bcrypt.compare(password, this.password);
 }
 
 // generate refresh token
@@ -68,4 +68,5 @@ UserSchema.methods.generateTempororyToken = async function () {
 
     return  { unHashedToken , hashedToken , tokenExpiry }
 }
-export default User = mongoose.model("User" , UserSchema)
+const User = mongoose.model("User", UserSchema);
+export default User
