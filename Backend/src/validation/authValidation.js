@@ -1,4 +1,4 @@
-import { body , param, params } from "express-validator"
+import { body } from "express-validator"
 
 const signInValidator = () => {
     return [
@@ -19,11 +19,6 @@ const signInValidator = () => {
             .notEmpty().withMessage("Password is required")
             .isLength({ min: 8 }).withMessage("Password should contain atleast 8 characters")
             .isLength({ max: 12}).withMessage("Password should only contain 12 characters")
-        ,
-        body("role")
-            .optional()
-            .isIn(AvailableUserRoles)
-            .withMessage("Invalid user role"),
     ]
 }
 
@@ -67,4 +62,4 @@ const varificatioTokenValidator = () => {
     ]
 }
 
-export default { signInValidator , loginValidator , resetPasswordValidator , changeCurrentPasswordValidator }
+export { signInValidator , loginValidator , resetPasswordValidator , changeCurrentPasswordValidator }
