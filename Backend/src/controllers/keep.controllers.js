@@ -1,8 +1,7 @@
-import Note from "../models/NoteSchema";
-import { asyncHandler } from "../utils/async-handler";
-import ApiError from "../utils/api-error";
-import { ApiResponse } from "../utils/api-response";
-import mongoose from "mongoose";
+import Note from "../models/NoteSchema.js";
+import { asyncHandler } from "../utils/async-handler.js";
+import ApiError from "../utils/api-error.js";
+import { ApiResponse } from "../utils/api-response.js";
 
 
 //          BASIC CRUD FUNCTIONALITY
@@ -307,12 +306,11 @@ const unArchiveNote = asyncHandler(async (req , res) => {
 
 
 
-export default { 
+export { 
     createNote,
     getNotes,
     updateNote,
     deleteNote,
-    searchNote,
     getBinNotes,
     restoreNoteFromBin,
     deleteNotePermanentFromBin,
