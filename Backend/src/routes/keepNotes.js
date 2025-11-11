@@ -6,7 +6,6 @@ import {
     getNotes,
     updateNote,
     deleteNote,
-    searchNote,
     getBinNotes,
     restoreNoteFromBin,
     deleteNotePermanentFromBin,
@@ -21,8 +20,7 @@ import validator from '../middlewares/validate';
 router.route("/create-note").post(createNoteValidator(), validator, createNote);
 router.route("/get-notes").get(getNotes);
 router.route("/update-note/:id").patch(updateNoteValidator() , validator, updateNote);
-router.route("/delete-note/:id").delete(deleteNote);
-router.route("/search-note").get(searchNote);
+router.route("/delete-note/:id").post(deleteNote);
 router.route("/get-bin-notes").get(getBinNotes);
 router.route("/restore-note-from-bin/:id").post(restoreNoteFromBin);
 router.route("/delete-note-permanent/:id").delete(deleteNotePermanentFromBin)
