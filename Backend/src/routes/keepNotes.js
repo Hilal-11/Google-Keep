@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router()
-import { createNoteValidator , updateNoteValidator } from '../validation/keepValidation'
+import { createNoteValidator , updateNoteValidator } from '../validation/keepValidation.js'
 import { 
     createNote,
     getNotes,
@@ -13,8 +13,8 @@ import {
     archiveNote,
     getArchiveNotes,
     unArchiveNote }
- from "../controllers/keep.controllers"
-import validator from '../middlewares/validate';
+ from "../controllers/keep.controllers.js"
+import validator from '../middlewares/validate.js';
 
 
 router.route("/create-note").post(createNoteValidator(), validator, createNote);
