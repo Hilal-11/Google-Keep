@@ -2,7 +2,7 @@ import Note from "../models/NoteSchema.js";
 import { asyncHandler } from "../utils/async-handler.js";
 import ApiError from "../utils/api-error.js";
 import { ApiResponse } from "../utils/api-response.js";
-
+import {redis} from "../../main.js"
 
 //          BASIC CRUD FUNCTIONALITY
 const createNote = asyncHandler(async (req , res) => {
@@ -36,7 +36,21 @@ const createNote = asyncHandler(async (req , res) => {
 
 const getNotes = asyncHandler(async (req , res) => {
     try {
+        const cachedNotes = await redis.get("cachedAllNotes")
+        if(cachedNotes) {
+            return res.status(200).json(
+                new ApiResponse(
+                    200,
+                    "Welcome cache hit ---- Note get successfully from cache",
+                    JSON.parse(cachedNotes)
+                )
+            )
+        }
         const getAllNotesResponse = await Note.find({});
+        //set the cache
+        await redis.set("cachedAllNotes" , JSON.stringify(getAllNotesResponse), 'EX', 20);
+        console.log("Cache miss");
+
         return res.status(200).json(
             new ApiResponse(
                 200,
