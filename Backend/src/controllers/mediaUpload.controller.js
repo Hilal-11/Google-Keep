@@ -1,5 +1,5 @@
 import Note from "../models/NoteSchema.js"
-import cloudinary  from "cloudinary"
+import { v2 as cloudinary } from "cloudinary";
 import { asyncHandler } from "../utils/async-handler.js";
 import ApiError from "../utils/api-error.js";
 import { ApiResponse } from "../utils/api-response.js";
