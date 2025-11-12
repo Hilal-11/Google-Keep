@@ -16,7 +16,7 @@ import {
  from "../controllers/keep.controllers.js"
 import mediaUpload from "../controllers/mediaUpload.controller.js"
 import validator from '../middlewares/validate.js';
-
+import rateLimiter from '../middlewares/rate-limiter.moddleware.js';
 
 // testing route
 router.route("/test2").get(async (req , res) => {
@@ -40,7 +40,7 @@ router.route("/empty-bin").post(emptyBin);
 router.route("/archive-note/:id").post(archiveNote)
 router.route("/get-archive-notes").get(getArchiveNotes);
 router.route("/unarchive-note/:id").post(unArchiveNote)
-
-router.route("/upload-media").post(mediaUpload);
+// media upload
+router.route("/upload-media").post(rateLimiter("upload-media", 10, 60), mediaUpload);
 
 export default router
