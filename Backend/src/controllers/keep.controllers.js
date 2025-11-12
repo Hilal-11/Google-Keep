@@ -6,7 +6,7 @@ import {redis} from "../../main.js"
 
 //          BASIC CRUD FUNCTIONALITY
 const createNote = asyncHandler(async (req , res) => {
-    const { note_title , note_discription , note_color , note_mediaFile , } = req.body;
+    const { note_title , note_discription , note_color , note_mediaFile } = req.body;
 
     try {
         const createNote = await Note.create({
@@ -16,7 +16,7 @@ const createNote = asyncHandler(async (req , res) => {
             note_mediaFile,
         })
         const response = await createNote.save();
-        return res.status(200).json(
+        return res.status(200).json( 
             new ApiResponse(
                 200,
                 "Note create successfully",
