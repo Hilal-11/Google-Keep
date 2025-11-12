@@ -1,7 +1,7 @@
 import express from 'express';
 import connectDB from './src/config/database.js'
 import cloudinaryConnect from './src/config/cloudinary.js'
-
+import Redis from 'ioredis';
 import auth_routes from './src/routes/authRoutes.js';
 import keep_routes from './src/routes/keepNotes.js'
 import fileUpload from "express-fileupload"
@@ -21,6 +21,14 @@ app.use(cors({
     ],
     credentials: true,
 }));
+
+
+export const redis = new Redis({ host: "localhost", port: 6379 })
+redis.on('error', (err) => {
+  console.error('Redis error:', err);
+});
+
+
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
