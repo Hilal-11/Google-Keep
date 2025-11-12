@@ -137,7 +137,7 @@ const resendVerificationEmail = asyncHandler(async (req , res) => {
 
     // send mail with email Token link/token
     await sendMail({
-        email: user?.emial,
+        email: user?.email,
         subject: "Resend varifivcation email",
         mailgenContent: emailVarificationMailGenContent(
         user.username,
