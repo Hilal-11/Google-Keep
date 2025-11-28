@@ -22,7 +22,7 @@ function Login() {
     }
 
     if(state === 'Sign Up'){
-        fetch('http://localhost:4000/api/auth/signUp', {
+        fetch('http://localhost:3000/api/auth/signUp', {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
@@ -42,7 +42,7 @@ function Login() {
         })
     }
     else if(state === 'Login'){
-        fetch('http://localhost:4000/api/auth/login', {
+        fetch('http://localhost:3000/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'
