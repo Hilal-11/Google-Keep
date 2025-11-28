@@ -3,7 +3,8 @@ import { v2 as cloudinary } from "cloudinary";
 import { asyncHandler } from "../utils/async-handler.js";
 import ApiError from "../utils/api-error.js";
 import { ApiResponse } from "../utils/api-response.js";
-
+import { Types } from "mongoose";
+import mongoose from "mongoose";
 const uploadImageToCloudinary = async (file , folder) => {
     try{
         const options = { folder , resource_type: "auto" };
@@ -33,15 +34,14 @@ const uploadVideoToCloudinary = async (file , folder) => {
 
 const mediaUpload = asyncHandler(async (req, res) => {
     const { noteId } = req.body;
-    console.log(noteId)
+    console.log("Uploaded file Note ID : ", noteId)
     const file = req.files.mediaFile;
     console.log(file)
     if(!noteId || !file) {
-        throw new ApiError(
-            400,
-            false,
-            "Media file and note is not defined"
-        )
+        return res.status(400).json({
+            success: false,
+            message: "Media file is missing",
+        });
     }
     console.log("File type:", file.mimetype);
 
@@ -62,11 +62,11 @@ const mediaUpload = asyncHandler(async (req, res) => {
         }
 
         // now save on databese
+        console.log("Uploaded file Note ID : ", noteId)
         const note = await Note.findById(noteId);
         if(!note) {
             throw new ApiError(
                 400,
-                false,
                 "Note not found"
             )
         }
@@ -89,12 +89,10 @@ const mediaUpload = asyncHandler(async (req, res) => {
             throw new ApiError(500, "Upload failed — no media URL returned");
         }
         // now save on databese
-
         const note = await Note.findById(noteId);
         if(!note) {
             throw new ApiError(
                 400,
-                false,
                 "Note not found"
             )
         }
