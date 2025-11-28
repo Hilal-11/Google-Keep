@@ -46,7 +46,7 @@ function Header() {
             </div>
             <div className='relative flex items-center justify-center'>
                  <InputGroupInput placeholder="Search..." className=" w-full rounded-sm h-[45px] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)]" />
-                <button className='hidden cursor-pointer lg:flex justify-center text-center absolute right-3 text-gray-500 text-xl hover:bg-slate-200 py-2 px-2 rounded-full'><MdOutlineSearch/></button>
+                <Button className='hidden cursor-pointer lg:flex justify-center text-center absolute right-3'><MdOutlineSearch/></Button>
             </div>
             <div className='flex justify-end items-center lg:pr-10 gap-0 lg:gap-6 pr-2'>
               <ButtonGroup>

@@ -5,7 +5,7 @@ import { useState , useEffect, createContext } from "react";
 export const AppContext = createContext();
 export const AppContextProvider = ({ children }) => {
 
-    const [isOpenMenu , setIsOpenMenu] = useState(false);
+    const [isOpenMenu , setIsOpenMenu] = useState(true);
     const [isLoggedIn , setIsLoggedIn] = useState(false)
 
     const storeTokenInLocalStorage = (token) => {
