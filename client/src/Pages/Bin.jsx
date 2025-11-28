@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import { HiArchiveBoxArrowDown } from "react-icons/hi2";
-import { TfiPaintBucket } from "react-icons/tfi";
-import { MdAddAlert } from "react-icons/md";
-import { IoPersonAddOutline } from "react-icons/io5";
-import { RiGalleryLine } from "react-icons/ri";
-import { HiOutlineFolderDownload } from "react-icons/hi";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import { motion } from "motion/react"
 import { clipItems , paintColors } from '../config/StaticData'
 import { useRef } from "react";
+import { Button } from "../components/ui/button"
+import { MdOutlineRestoreFromTrash } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 function Bin() {
 
   const [binNotes , setBinNotes] = useState([])
@@ -93,10 +95,20 @@ function Bin() {
     getAllArchivedNotes();
   }, [])
 
+  const handleDeleteForeverFromBin = () => {
+   
+  }
+  const handleRestoreNoteFromBin = () => {
+
+  }
+
   return (
-    <div className='flex justify-center items-center h-svh'>
-              
-        <div ref={constraintsRef} className='relative w-full h-auto mt-8 flex flex-wrap justify-center items-start gap-8 z-10 pb-10'>
+    <div className=' h-svh py-10'>
+        <div className="flex gap-2 items-center justify-center">
+          <p className="poppins-regular font-medium text-sm">Notes in the Recycle Bin are deleted after 7 days.</p>
+          <Button className="bg-transparent text-sm cursor-pointer poppins-medium text-blue-500 hover:bg-blue-100">Empty Bin</Button>
+        </div>
+        <div ref={constraintsRef} className='py-10 relative w-full h-auto mt-8 flex flex-wrap justify-center items-start gap-8 z-10 pb-10'>
               {/* NOTE CONTAINER */}
           {
               (binNotes.length === 0) ? (<div className='space-y-2'>
@@ -136,29 +148,28 @@ function Bin() {
                           ))}
                       </div>
                       <div className='absolute bottom-0 left-0 flex text-gray-700 justify-evenly bg-neutral-100 w-full py-1.5 shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)]'>
-                          <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'
-                              onClick={() => toggleIsPaint(index)}
-                          >
-                                  <TfiPaintBucket />
-                          </span>
-                        
 
 
-                          <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><MdAddAlert /></span>
-                          <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><IoPersonAddOutline /></span>
-                          <input type="file" onChange={handleImageUpload} id="fileUpload" className='hidden'/>
-                              <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><label htmlFor="fileUpload"><RiGalleryLine /></label></span>
-                          <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><HiOutlineFolderDownload /></span>
+                      <Tooltip>
+      <TooltipTrigger asChild>
+        <span onClick={handleDeleteForeverFromBin} className='cursor-pointer text-xl font-bold hover:bg-gray-200 py-2 px-2 bg-neutral-200 text-neutral-900 rounded-sm'><MdDelete /></span>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>Delete forever</p>
+      </TooltipContent>
+    </Tooltip>
+    
+    <Tooltip>
+      <TooltipTrigger asChild>
+       <span onClick={handleRestoreNoteFromBin} className='cursor-pointer text-xl font-bold hover:bg-gray-200 py-2 px-2 bg-neutral-200 text-neutral-900 rounded-sm'><MdOutlineRestoreFromTrash /></span>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>Restore note</p>
+      </TooltipContent>
+    </Tooltip>
+
                           
                           
-                          
-                          <span 
-                          onClick={() => toggleClipItems(index)}
-                          className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'>
-                              <BsThreeDotsVertical />
-                          </span>
-
-
                       </div>
 
 
