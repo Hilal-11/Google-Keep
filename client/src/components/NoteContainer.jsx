@@ -24,13 +24,13 @@ function NoteContainer() {
     const [noteTitle , setNoteTitle] = useState('');
     const [noteDetails , setNoteDetails] = useState('');
     const [isPinnedTrue , setIsPinnedTrue] = useState(false)
-    const [listOfNotes , setListOfNotes] = useState([])
+    const [listOfNotes , setListOfNotes] = useState("")
     
     const getAllNotes = async () => {
-        const response = await fetch('http://localhost:4000/api/keep/getNotes')
+        const response = await fetch('http://localhost:3000/api/v1/keep/get-notes')
         const data = await response.json()
-        setListOfNotes(data.data)
-        // setListOfNotes(data)
+        console.log(data)
+        setListOfNotes(data.message)
     }
 
 
@@ -53,7 +53,7 @@ function NoteContainer() {
         //     
         // }
 
-        fetch('http://localhost:4000/api/keep/keepNote' , {
+        fetch('http://localhost:3000/api/v1/keep/create-note' , {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -76,6 +76,29 @@ function NoteContainer() {
     }
 
 
+    const [uploadFile , setUploadFile] = useState(null)
+    const handleImageUpload = (event) => {
+        console.log(event.target.files)
+        if(event.target.files && event.target.files.length > 0){
+            setUploadFile(event.target.files[0])
+        }
+
+
+        // upload to backend 
+
+        fetch("http://localhost:3000/api/v1/keep/upload-media", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(uploadFile)
+        }).then((response) => {
+            console.log(response)
+        }).catch((error) => {
+            toast.error(error.message)
+        })
+    }
+    
 
 
     // FOR NOTE ICONS --> OPTIONS
@@ -168,7 +191,7 @@ function NoteContainer() {
                     >
                     </textarea>
                 </div>
-                <div className='flex px-3 gap-4 pb-1 flex-wrap'>
+                <div className='flex px-3 gap-4 pb-1 flex-wrap      '>
                     <Button className='bg-neutral-200 text-neutral-900 cursor-pointer hover:bg-neutral-300'><TfiPaintBucket /></Button>
                     <Button className='bg-neutral-200 text-neutral-900 cursor-pointer hover:bg-neutral-300'><MdAddAlert /></Button>
                     <Button className='bg-neutral-200 text-neutral-900 cursor-pointer hover:bg-neutral-300'><IoPersonAddOutline /></Button>
@@ -199,34 +222,37 @@ function NoteContainer() {
         <div ref={constraintsRef} className='relative w-full h-auto mt-8 flex flex-wrap justify-center items-start gap-8 z-10 pb-10'>
             {/* NOTE CONTAINER */}
         {
-            (!listOfNotes) ? (<NoNote />) :
-            listOfNotes.map((item , index) => (
+            (listOfNotes.length === 0) ? (<NoNote />) :
+            listOfNotes?.map((item , index) => (
                 <motion.div
                     key={index}
                     // drag={isDraggable}
                     // dragElastic={0.2}
                     // dragSnapToOrigin={true}
                     // dragConstraints={constraintsRef}
-                    dragMomentum={false}
+                    // dragMomentum={false}
                 className='relative'>
-                    <div key={index} className={isExpanded[index] ? 'space-y-6 relative mx-auto w-[100%] lg:w-[300px] h-auto ring-1 rounded-lg py-2 px-4' : 'relative w-[100%] lg:w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'}
+                    <div key={index} className={isExpanded[index] ? 'space-y-6 relative mx-auto lg:w-[300px] h-auto ring-1 rounded-lg py-2 px-4' : 'relative w-[100%] lg:w-[300px] h-[400px] ring-1 rounded-lg py-2 px-4 overflow-hidden'}
                     style={{
                         'boxShadow':  '2px 2px 12px #d1d5dc, -2px -2px 12px #d1d5dc',
                         backgroundColor: noteBgColor[index] || '#ffffff',
                     }}
                 >
                     <div className='flex justify-between items-center'>
-                        <h2 className='font-medium text-[18px] poppins-medium text-gray-600'>{item.title}</h2>
+                        <h2 className='font-medium text-[18px] poppins-medium text-gray-600'>{item.note_title}</h2>
                         <span className='text-lg cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full' onClick={() => setIsPinnedTrue(!isPinnedTrue)}>{ isPinnedTrue ? (<BsPinFill/>) : (<BsPin />)}</span>
                     </div>
                     <div 
                         onClick={() => expandNode(index)}
                         className={isExpanded[index] ? 'w-full h-auto ' : ' overflow-hidden max-h-[300px] p-1'}>
-                        <p className='py-2 text-[14px] poppins-regular text-[#4a5565]'>{item.content}</p>
+                        <p className='py-2 text-[14px] poppins-regular text-[#4a5565]'>{item.note_discription}</p>
                     </div>
-                    <div className='absolute bottom-1 flex text-gray-700 justify-evenly w-[90%]'>
-
-
+                    <div className='grid grid-cols-1 gap-1 py-2 px-2 w-full h-auto'>
+                        {item.note_mediaFile?.map((image , index) => (
+                            <img key={index} src={image} alt="error" />
+                        ))}
+                    </div>
+                    <div className='absolute bottom-0 left-0 flex text-gray-700 justify-evenly bg-neutral-100 w-full py-1.5 shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)]'>
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'
                             onClick={() => toggleIsPaint(index)}
                         >
@@ -237,7 +263,8 @@ function NoteContainer() {
 
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><MdAddAlert /></span>
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><IoPersonAddOutline /></span>
-                        <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><RiGalleryLine /></span>
+                        <input type="file" onChange={handleImageUpload} id="fileUpload" className='hidden'/>
+                            <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><label htmlFor="fileUpload"><RiGalleryLine /></label></span>
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><HiOutlineFolderDownload /></span>
                         
                         
@@ -256,14 +283,14 @@ function NoteContainer() {
                 </div>
                 {/* PAINTS/COLORS */}
                 {
-                    isPaint[index] && <div className='py-3 lg:py-0 mt-2 absolute right-[0%] w-auto lg:w-auto px-4 lg:h-[60px] rounded-md shadow-sm shadow-gray-500 flex justify-evenly items-center gap-2 '>
+                    isPaint[index] && <div className='z-50 bg-white py-3 lg:py-0 mt-2 absolute right-[0%] w-auto lg:w-auto px-4 lg:h-[60px] rounded-md shadow-sm shadow-gray-500 flex justify-evenly items-center gap-2 '>
                     {
                         paintColors.map((item) => (
                             <button key={item.id} className='cursor-pointer py-3 lg:py-4 px-3 lg:px-4 rounded-full'
                                 style={{
                                     backgroundColor: item.color
                                 }}
-                                onClick={() => handlePaintColors(index , item.color)}
+                                onClick={() => handlePaintColors(index , item.note_color)}
                             ></button>
                         ))
                     }
