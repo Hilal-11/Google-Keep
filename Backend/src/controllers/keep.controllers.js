@@ -165,17 +165,19 @@ const getBinNotes = asyncHandler(async (req , res) => {
 })
 
 const restoreNoteFromBin = asyncHandler(async (req , res) => {
-    const { note_id } = req.params;
+    const { id } = req.params;
     try{
-        const note = await Note.findById(note_id);
+        const note = await Note.findById(id);
         if(!note) {
-            throw new ApiError(401, "note not found in bin")
+            return res.status(401).json(
+                new ApiError(401, "note not found in bin")
+            )
         }
 
         note.isNoteDeleted = false;
         await note.save();
 
-        res.status(200).json(
+        return res.status(200).json(
             new ApiResponse(200, "note restore from bin successfully" , note)
         )
     }catch(error) {
@@ -190,15 +192,18 @@ const restoreNoteFromBin = asyncHandler(async (req , res) => {
 })  
 
 const deleteNotePermanentFromBin = asyncHandler(async (req , res) => {
-    const { note_id } = req.params;
+    const { id } = req.params;
+    
     try{
-        const note = await Note.findById(note_id);
+        const note = await Note.findById(id);
         if(!note) {
-            throw new ApiError(401, "note not found")
+            return res.status(401).json(
+                new ApiError(401, "note not found in bin")
+            )
         }
         const deleteNotePerminent = await note.deleteOne();
 
-        res.status(200).json(
+        return res.status(200).json(
             new ApiResponse(200 , "note delete perminently" , deleteNotePerminent)
         )
     }catch(error) {
@@ -246,7 +251,9 @@ const archiveNote = asyncHandler(async (req , res) => {
 
         const note = await Note.findById(note_id);
         if(!note) {
-            return new ApiError(401 , "Note not found")
+            return res.status(401).json(
+                new ApiError(401, "note not found in bin")
+            )
         }
 
         note.isArchiveNote = true;
@@ -297,7 +304,9 @@ const unArchiveNote = asyncHandler(async (req , res) => {
 
         const note = await Note.findById(note_id);
         if(!note) {
-            throw new ApiError(401 , "Note not found")
+            return res.status(401).json(
+                new ApiError(401, "note not found in bin")
+            )
         }
 
         note.isArchiveNote = false;
