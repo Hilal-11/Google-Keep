@@ -41,17 +41,16 @@ function NoteContainer() {
 
 
 
+
     const handleCreateNote = (event) => {
         const note = {
-            title: noteTitle,
-            discription: noteDetails,
+            note_title: noteTitle,
+            note_discription: noteDetails,
         }
+        console.log(note)
         if(note.title === '' && note.discription === ''){
             toast.error("Please Provide Title and Note")
         }
-        // else{
-        //     
-        // }
 
         fetch('http://localhost:3000/api/v1/keep/create-note' , {
             method: 'POST',
@@ -75,7 +74,51 @@ function NoteContainer() {
         setIsOpenNoteInput(false)
     }
 
+        // delete note
+    const handleDeleteNote =  (noteId) => {
+            fetch(`http://localhost:3000/api/v1/delete-note/${noteId}`, {
+                method: "DELETE",
+                headers: {
+                            "Content-type": "application/json"
+                }
+                }).then((res) => {
+                    console.log(res)
+                    if(res.ok) {
+                        getAllNotes();
+                    }
+                }).catch((error) => {
+                    toast.error(error.message)
+                })
+    }
+    const handleLabel = (noteId) => {
+        alert("Hey every one, this is google keep", noteId)
+    }
 
+    const handleAction = (type , noteId) => {
+        switch(type) {
+            case type === "delete": 
+                return handleDeleteNote(noteId)
+            case type === "drawing": 
+                return handleLabel(noteId)
+        }
+    }
+
+
+    const handleDrawing = (noteId) => {
+        alert("Hey every one, this is google keep", noteId)
+    }
+    const handleCopyNote = (noteId) => {
+        alert("Hey every one, this is google keep", noteId)
+    }
+    const handleStickBox = (noteId) => {
+        alert("Hey every one, this is google keep", noteId)
+    }
+    const handleCopyToGoogleDocs = (noteId) => {
+        alert("Hey every one, this is google keep", noteId)
+    }    
+    const handleVersionHistroy = (noteId) => {
+        alert("Hey every one, this is google keep", noteId)
+    }
     const [uploadFile , setUploadFile] = useState(null)
     const handleImageUpload = (event) => {
         console.log(event.target.files)
@@ -223,7 +266,7 @@ function NoteContainer() {
             {/* NOTE CONTAINER */}
         {
             (listOfNotes.length === 0) ? (<NoNote />) :
-            listOfNotes?.map((item , index) => (
+            listOfNotes?.map((note , index) => (
                 <motion.div
                     key={index}
                     // drag={isDraggable}
@@ -239,16 +282,16 @@ function NoteContainer() {
                     }}
                 >
                     <div className='flex justify-between items-center'>
-                        <h2 className='font-medium text-[18px] poppins-medium text-gray-600'>{item.note_title}</h2>
+                        <h2 className='font-medium text-[18px] poppins-medium text-gray-600'>{note.note_title}</h2>
                         <span className='text-lg cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full' onClick={() => setIsPinnedTrue(!isPinnedTrue)}>{ isPinnedTrue ? (<BsPinFill/>) : (<BsPin />)}</span>
                     </div>
                     <div 
                         onClick={() => expandNode(index)}
                         className={isExpanded[index] ? 'w-full h-auto ' : ' overflow-hidden max-h-[300px] p-1'}>
-                        <p className='py-2 text-[14px] poppins-regular text-[#4a5565]'>{item.note_discription}</p>
+                        <p className='py-2 text-[14px] poppins-regular text-[#4a5565]'>{note.note_discription}</p>
                     </div>
                     <div className='grid grid-cols-1 gap-1 py-2 px-2 w-full h-auto'>
-                        {item.note_mediaFile?.map((image , index) => (
+                        {note.note_mediaFile?.map((image , index) => (
                             <img key={index} src={image} alt="error" />
                         ))}
                     </div>
@@ -300,7 +343,7 @@ function NoteContainer() {
                     isClipItem[index] && <div className='z-50 absolute left-[35%] lg:left-[70%] py-2 my-1 w-[170px] h-auto rounded-md bg-white shadow-md shadow-gray-300 flex-col poppins-regular text-[13px]'>
                     {
                         clipItems.map((item) => (
-                            <button className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4' key={item.id}>{item.clipItem}</button>
+                            <button onClick={() => handleAction(item.type, note.id)}  className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4' key={item.id}>{item.clipItem}</button>
                         ))
                     }
                     </div>
