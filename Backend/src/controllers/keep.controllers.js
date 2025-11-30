@@ -6,14 +6,12 @@ import {redis} from "../../main.js"
 
 //          BASIC CRUD FUNCTIONALITY
 const createNote = asyncHandler(async (req , res) => {
-    const { note_title , note_discription , note_color , note_mediaFile } = req.body;
-
+    const { note_title , note_discription } = req.body;
+    console.log(note_title, note_discription)
     try {
         const createNote = await Note.create({
             note_title,
             note_discription,
-            note_color,
-            note_mediaFile,
         })
         const response = await createNote.save();
         return res.status(200).json( 
