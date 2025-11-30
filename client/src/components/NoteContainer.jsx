@@ -90,35 +90,25 @@ function NoteContainer() {
                     toast.error(error.message)
                 })
     }
-    const handleLabel = (noteId) => {
-        alert("Hey every one, this is google keep", noteId)
+    const handleNoteLabels = (noteId) => {
+       console.log("Hey this is G-Keep", noteId)
+    }
+    const handleNoteDrawing = (noteId) => {
+       console.log("Hey this is G-Keep", noteId)
+    }
+    const handleNoteCopy = (noteId) => {
+       console.log("Hey this is G-Keep", noteId)
+    }
+    const handleNoteStick = (noteId) => {
+       console.log("Hey this is G-Keep", noteId)
+    }
+    const handleNoteDocs = (noteId) => {
+       console.log("Hey this is G-Keep", noteId)
+    }
+    const handleNoteHistory = (noteId) => {
+       console.log("Hey this is G-Keep", noteId)
     }
 
-    const handleAction = (type , noteId) => {
-        switch(type) {
-            case type === "delete": 
-                return handleDeleteNote(noteId)
-            case type === "drawing": 
-                return handleLabel(noteId)
-        }
-    }
-
-
-    const handleDrawing = (noteId) => {
-        alert("Hey every one, this is google keep", noteId)
-    }
-    const handleCopyNote = (noteId) => {
-        alert("Hey every one, this is google keep", noteId)
-    }
-    const handleStickBox = (noteId) => {
-        alert("Hey every one, this is google keep", noteId)
-    }
-    const handleCopyToGoogleDocs = (noteId) => {
-        alert("Hey every one, this is google keep", noteId)
-    }    
-    const handleVersionHistroy = (noteId) => {
-        alert("Hey every one, this is google keep", noteId)
-    }
     const [uploadFile , setUploadFile] = useState(null)
     const handleImageUpload = (event) => {
         console.log(event.target.files)
@@ -301,28 +291,17 @@ function NoteContainer() {
                         >
                                 <TfiPaintBucket />
                         </span>
-                      
-
-
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><MdAddAlert /></span>
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><IoPersonAddOutline /></span>
                         <input type="file" onChange={handleImageUpload} id="fileUpload" className='hidden'/>
                             <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><label htmlFor="fileUpload"><RiGalleryLine /></label></span>
                         <span className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'><HiOutlineFolderDownload /></span>
-                        
-                        
-                        
                         <span 
                         onClick={() => toggleClipItems(index)}
                         className='cursor-pointer font-bold hover:bg-gray-200 py-2 px-2 rounded-full'>
                             <BsThreeDotsVertical />
                         </span>
-
-
-                    </div>
-
-
-                    
+                    </div>  
                 </div>
                 {/* PAINTS/COLORS */}
                 {
@@ -341,12 +320,19 @@ function NoteContainer() {
                 }
                 {
                     isClipItem[index] && <div className='z-50 absolute left-[35%] lg:left-[70%] py-2 my-1 w-[170px] h-auto rounded-md bg-white shadow-md shadow-gray-300 flex-col poppins-regular text-[13px]'>
-                    {
+                    {/* {
                         clipItems.map((item) => (
-                            <button onClick={() => handleAction(item.type, note.id)}  className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4' key={item.id}>{item.clipItem}</button>
+                            <button key={item.id} onClick={handleAction(item.type, note.id)}  className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'></button>
                         ))
-                    }
-                    </div>
+                    } */}
+                    <button onClick={handleDeleteNote(note.id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Delete note</button>
+                    <button onClick={handleNoteLabels(note.id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Add Label</button>
+                    <button onClick={handleNoteDrawing(note.id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Add drawing</button>
+                    <button onClick={handleNoteCopy(note.id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Make a copy</button>
+                    <button onClick={handleNoteStick(note.id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Show stick boxes</button>
+                    <button onClick={handleNoteDocs(note.id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Copy to Google Docs</button>
+                    <button onClick={handleNoteHistory(note.id)} className='cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Version history</button>
+                </div>
                 }
                 
                     
@@ -360,3 +346,10 @@ function NoteContainer() {
 }
 
 export default NoteContainer
+
+
+
+
+
+
+
