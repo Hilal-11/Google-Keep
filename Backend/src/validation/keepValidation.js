@@ -6,18 +6,10 @@ const createNoteValidator = () =>  {
             .isString()
             .notEmpty()
             .withMessage("Note title is required")
-            .isLength({ max: 20 }).withMessage("Title should be contains atmost 20 characters")
-
-            
         ,
         body("note_discription")
             .isString()
             .notEmpty()
-            .withMessage("Discription is required")
-        ,
-        body("note_mediaFile")
-            .isString()
-            .optional()
             .withMessage("Discription is required")
         ,
     ]
