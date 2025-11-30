@@ -28,7 +28,6 @@ router.route("/test2").get(async (req , res) => {
   })
 })
 
-
 router.route("/create-note").post(createNoteValidator(), validator, createNote);
 router.route("/get-notes").get(getNotes);
 router.route("/update-note/:id").patch(updateNoteValidator() , validator, updateNote);
