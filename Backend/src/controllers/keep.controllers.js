@@ -44,7 +44,7 @@ const getNotes = asyncHandler(async (req , res) => {
                 )
             )
         }
-        const getAllNotesResponse = await Note.find({});
+        const getAllNotesResponse = await Note.find({ isNoteDeleted: false });
         //set the cache
         await redis.set("cachedAllNotes" , JSON.stringify(getAllNotesResponse), 'EX', 20);
         console.log("Cache miss");
@@ -106,22 +106,26 @@ const updateNote = asyncHandler(async (req , res) => {
 })
 
 const deleteNote = asyncHandler(async (req , res) => {
-    const note_id = req.params;
-
+    const { id } = req.params;
+    console.log(id)
     try{
-        if(!note_id) {
+        if(!id) {
             throw new ApiError(
                 401,
                 "note id is not defined"
             )
         }
-        const note = await Note.findById(note_id); // soft delection , i want to add in on bin for one week
+        const note = await Note.findById(id); // soft delection , i want to add in on bin for one week
+        if(!note) {
+            throw new ApiError(
+                401,
+                "Note not found, incorrect noteId"
+            )
+        }
         note.isNoteDeleted = true;
         note.deleteAt = Date.now();
+        await note.save();
 
-        if(!note) {
-            throw new ApiError(401, "note not found")
-        }
 
         res.status(200).json(
             new ApiResponse(200, "Note deleted and added to bin successfully", note)
