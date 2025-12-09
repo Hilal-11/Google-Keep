@@ -61,7 +61,7 @@ function NoteContainer() {
         }).then(res => {
             console.log(res)
             if(res.ok) {
-                getAllNotes();
+                window.location.reload();
             }
         }).catch(error => {
             toast.error(error.message)
@@ -76,37 +76,40 @@ function NoteContainer() {
 
         // delete note
     const handleDeleteNote =  (noteId) => {
-            fetch(`http://localhost:3000/api/v1/delete-note/${noteId}`, {
-                method: "DELETE",
+            fetch(`http://localhost:3000/api/v1/keep/delete-note/${noteId}`, {
+                method: "POST",
                 headers: {
-                            "Content-type": "application/json"
+                    "Content-type": "application/json"
                 }
                 }).then((res) => {
                     console.log(res)
                     if(res.ok) {
-                        getAllNotes();
+                        toast.success("Note is added on Bin")
+                        setTimeout(() => {
+                            window.location.reload()
+                        },3000)
                     }
                 }).catch((error) => {
                     toast.error(error.message)
                 })
     }
     const handleNoteLabels = (noteId) => {
-       console.log("Hey this is G-Keep", noteId)
+       alert("Hey this is G-Keep", noteId)
     }
     const handleNoteDrawing = (noteId) => {
-       console.log("Hey this is G-Keep", noteId)
+       alert("Hey this is G-Keep", noteId)
     }
     const handleNoteCopy = (noteId) => {
-       console.log("Hey this is G-Keep", noteId)
+       alert("Hey this is G-Keep", noteId)
     }
     const handleNoteStick = (noteId) => {
-       console.log("Hey this is G-Keep", noteId)
+       alert("Hey this is G-Keep", noteId)
     }
     const handleNoteDocs = (noteId) => {
-       console.log("Hey this is G-Keep", noteId)
+       alert("Hey this is G-Keep", noteId)
     }
     const handleNoteHistory = (noteId) => {
-       console.log("Hey this is G-Keep", noteId)
+       alert("Hey this is G-Keep", noteId)
     }
 
     const [uploadFile , setUploadFile] = useState(null)
@@ -325,13 +328,13 @@ function NoteContainer() {
                             <button key={item.id} onClick={handleAction(item.type, note.id)}  className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'></button>
                         ))
                     } */}
-                    <button onClick={handleDeleteNote(note.id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Delete note</button>
-                    <button onClick={handleNoteLabels(note.id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Add Label</button>
-                    <button onClick={handleNoteDrawing(note.id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Add drawing</button>
-                    <button onClick={handleNoteCopy(note.id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Make a copy</button>
-                    <button onClick={handleNoteStick(note.id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Show stick boxes</button>
-                    <button onClick={handleNoteDocs(note.id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Copy to Google Docs</button>
-                    <button onClick={handleNoteHistory(note.id)} className='cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Version history</button>
+                    <button onClick={() => handleDeleteNote(note._id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Delete note</button>
+                    <button onClick={() => handleNoteLabels(note._id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Add Label</button>
+                    <button onClick={() => handleNoteDrawing(note._id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Add drawing</button>
+                    <button onClick={() => handleNoteCopy(note._id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Make a copy</button>
+                    <button onClick={() => handleNoteStick(note._id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Show stick boxes</button>
+                    <button onClick={() => handleNoteDocs(note._id)} className=' cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Copy to Google Docs</button>
+                    <button onClick={() => handleNoteHistory(note._id)} className='cursor-pointer py-1 w-full hover:bg-gray-200 duration-200 text-left px-4'>Version history</button>
                 </div>
                 }
                 

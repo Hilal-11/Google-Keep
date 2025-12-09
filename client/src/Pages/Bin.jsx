@@ -62,12 +62,17 @@ function Bin() {
           }
         }, [])
         const constraintsRef  = useRef(null)
-  const getAllArchivedNotes = async () => {
+  const getAllBinNotes = async () => {
     const response = await fetch("http://localhost:3000/api/v1/keep/get-bin-notes");
     const data = await response.json()
     console.log(data);
     setBinNotes(data.message)
   }
+
+  useEffect(() => {
+    getAllBinNotes()
+  },[])
+  
   const [uploadFile , setUploadFile] = useState(null)
       const handleImageUpload = (event) => {
           console.log(event.target.files)
@@ -91,9 +96,6 @@ function Bin() {
           })
       }
 
-  useEffect(() => {
-    getAllArchivedNotes();
-  }, [])
 
   const handleDeleteForeverFromBin = (noteId) => {
     fetch(`http://localhost:3000/api/v1/keep/delete-note-permanent/${noteId}`, {
@@ -134,7 +136,7 @@ function Bin() {
           <p className="poppins-regular font-medium text-sm">Notes in the Recycle Bin are deleted after 7 days.</p>
           <Button onClick={emptyBin} className="bg-transparent text-sm cursor-pointer poppins-medium text-blue-500 hover:bg-blue-100">Empty Bin</Button>
         </div>
-        <div ref={constraintsRef} className='py-10 relative w-full h-auto mt-8 flex flex-wrap justify-center items-start gap-8 z-10 pb-10'>
+        <div className='py-10 relative w-full h-auto mt-8 flex flex-wrap justify-center items-start gap-8 z-10 pb-10'>
               {/* NOTE CONTAINER */}
           {
               (binNotes.length === 0) ? (<div className='space-y-2'>
@@ -177,26 +179,23 @@ function Bin() {
 
 
                       <Tooltip>
-      <TooltipTrigger asChild>
-        <span onClick={handleDeleteForeverFromBin(note._id)} className='cursor-pointer text-xl font-bold hover:bg-gray-200 py-2 px-2 bg-neutral-200 text-neutral-900 rounded-sm'><MdDelete /></span>
-      </TooltipTrigger>
-      <TooltipContent>
-        <p>Delete forever</p>
-      </TooltipContent>
-    </Tooltip>
-    
-    <Tooltip>
-      <TooltipTrigger asChild>
-       <span onClick={handleRestoreNoteFromBin(note._id)} className='cursor-pointer text-xl font-bold hover:bg-gray-200 py-2 px-2 bg-neutral-200 text-neutral-900 rounded-sm'><MdOutlineRestoreFromTrash /></span>
-      </TooltipTrigger>
-      <TooltipContent>
-        <p>Restore note</p>
-      </TooltipContent>
-    </Tooltip>
-
-                          
-                          
-                      </div>
+                        <TooltipTrigger asChild>
+                            <span onClick={handleDeleteForeverFromBin(note._id)} className='cursor-pointer text-xl font-bold hover:bg-gray-200 py-2 px-2 bg-neutral-200 text-neutral-900 rounded-sm'><MdDelete /></span>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Delete forever</p>
+                        </TooltipContent>
+                        </Tooltip>
+                        
+                        <Tooltip>
+                        <TooltipTrigger asChild>
+                            <span onClick={handleRestoreNoteFromBin(note._id)} className='cursor-pointer text-xl font-bold hover:bg-gray-200 py-2 px-2 bg-neutral-200 text-neutral-900 rounded-sm'><MdOutlineRestoreFromTrash /></span>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Restore note</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </div>
 
 
                       

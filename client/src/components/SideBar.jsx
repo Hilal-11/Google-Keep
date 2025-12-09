@@ -60,9 +60,6 @@ function SideBar() {
                             <div>
                                 <button className='block py-3 px-3 bg-slate-200 rounded-full cursor-pointer hover:bg-yellow-200'><IoSettingsOutline /></button>
                             </div>
-                            <div className=''>
-                                <Switch />
-                            </div>
                         </div>
                     </div>
                 
