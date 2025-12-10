@@ -1,18 +1,17 @@
-import React from 'react'
 import Header from './components/Header'
 import MainBodyNote from './components/MainBodyNote'
 import { ToastContainer } from 'react-toastify'
 import { Routes , Route , useLocation } from 'react-router-dom'
 
-import Reminders from './Pages/Reminders'
-import Labels from './Pages/Labels'
-import Archive from './Pages/Archive'
-import Bin from './Pages/Bin'
-import SideBar from './Components/SideBar'
+import Reminders from './Pages/Reminders.js'
+import Labels from './Pages/Labels.js'
+import Archive from './Pages/Archive.js'
+import Bin from './Pages/Bin.js'
+import SideBar from './components/SideBar'
 import { useContext } from 'react'
 import { AppContext } from './Context/ContextApi'
-import Login from './auth/Login'
-import Logout from './auth/Logout'
+import Login from './auth/Login.js'
+import Logout from './auth/Logout.js'
 function App() {
 
   const { isOpenMenu } = useContext(AppContext)

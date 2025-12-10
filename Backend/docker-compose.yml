@@ -3,3 +3,28 @@ services:
     image: valkey/valkey
     ports:
       - 6379:6379
+  mongo:
+    image: mongo:7
+    container_name: mongo_db
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: hilal
+      MONGO_INITDB_ROOT_PASSWORD: qcfnPUGBXPXN4BKr
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: .
+    container_name: keep-backend
+    restart: always
+    ports:
+      - "4000:3000"
+    environment:
+      - MONGO_URL=mongodb+srv://hilalahmadcodedev123:qcfnPUGBXPXN4BKr@hilal-11.owyodwg.mongodb.net/Keep
+    depends_on:
+      - mongo
+
+volumes:
+  mongo-data:
